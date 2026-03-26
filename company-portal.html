@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tow Company Portal — CompareMytow.com</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--green:#00A86B;--green-dark:#007a4e;--green-light:#e6f7f1;--orange:#FF6B2B;--navy:#0D1B2A;--slate:#1e2d3d;--mid:#4a5568;--light:#f7f9fc;--white:#ffffff;--border:#e2e8f0;--shadow:0 4px 24px rgba(13,27,42,0.10);--radius:14px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'DM Sans',sans-serif;background:var(--light);color:var(--navy);min-height:100vh;}
+  nav{background:var(--navy);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(0,0,0,0.18);}
+  .logo{font-family:'DM Serif Display',serif;font-size:22px;color:white;text-decoration:none;}
+  .logo span{color:var(--green);}
+  .nav-right{display:flex;gap:12px;align-items:center;}
+  .nav-back{color:rgba(255,255,255,0.7);font-size:14px;text-decoration:none;padding:6px 14px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);}
+  .portal-badge{background:rgba(0,168,107,0.2);color:var(--green);font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;border:1px solid rgba(0,168,107,0.3);}
+  .main{max-width:680px;margin:0 auto;padding:48px 24px 80px;}
+
+  /* LANDING */
+  .landing{text-align:center;padding:48px 0;}
+  .landing-icon{font-size:56px;margin-bottom:20px;}
+  .landing h1{font-family:'DM Serif Display',serif;font-size:36px;margin-bottom:12px;}
+  .landing p{color:var(--mid);font-size:16px;line-height:1.7;max-width:480px;margin:0 auto 32px;}
+  .google-btn{display:inline-flex;align-items:center;gap:10px;background:white;color:#3c4043;border:1.5px solid #dadce0;padding:14px 28px;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;transition:box-shadow 0.2s;font-family:'DM Sans',sans-serif;box-shadow:0 2px 8px rgba(0,0,0,0.08);}
+  .google-btn:hover{box-shadow:0 4px 16px rgba(0,0,0,0.15);}
+  .google-btn img{width:20px;height:20px;}
+  .benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px;text-align:left;}
+  .benefit{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);}
+  .benefit-icon{font-size:24px;margin-bottom:10px;}
+  .benefit h3{font-size:14px;font-weight:700;margin-bottom:6px;}
+  .benefit p{font-size:13px;color:var(--mid);line-height:1.5;}
+
+  /* PORTAL */
+  .portal-header{display:flex;align-items:center;gap:16px;margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+  .company-avatar{width:56px;height:56px;border-radius:14px;background:var(--navy);display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:22px;color:white;flex-shrink:0;overflow:hidden;}
+  .company-avatar img{width:100%;height:100%;object-fit:cover;}
+  .portal-header h2{font-family:'DM Serif Display',serif;font-size:24px;margin-bottom:2px;}
+  .portal-header p{font-size:14px;color:var(--mid);}
+  .status-pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;}
+  .status-approved{background:var(--green-light);color:var(--green-dark);}
+  .status-pending{background:#fef3c7;color:#92400e;}
+
+  /* SECTIONS */
+  .section{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:28px;margin-bottom:20px;box-shadow:var(--shadow);}
+  .section-title{font-family:'DM Serif Display',serif;font-size:18px;margin-bottom:4px;}
+  .section-sub{font-size:13px;color:var(--mid);margin-bottom:20px;}
+
+  /* FORM ELEMENTS */
+  .form-group{margin-bottom:18px;}
+  label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;}
+  input[type=text],input[type=email],input[type=tel],textarea,select{width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--navy);outline:none;transition:border-color 0.2s;}
+  input:focus,textarea:focus,select:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(0,168,107,0.1);}
+  textarea{resize:vertical;min-height:80px;}
+  .input-hint{font-size:12px;color:#94a3b8;margin-top:4px;}
+
+  /* COUNTY GRID */
+  .county-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px;}
+  .county-chip{display:flex;align-items:center;gap:6px;padding:8px 10px;border:1.5px solid var(--border);border-radius:8px;cursor:pointer;font-size:13px;transition:all 0.15s;background:var(--white);user-select:none;}
+  .county-chip:hover{border-color:var(--green);background:var(--green-light);}
+  .county-chip.selected{border-color:var(--green);background:var(--green-light);color:var(--green-dark);font-weight:600;}
+  .county-chip input{display:none;}
+  .select-all-btn{font-size:12px;color:var(--green);cursor:pointer;font-weight:600;margin-bottom:10px;background:none;border:none;padding:0;}
+
+  /* VEHICLE TOGGLES */
+  .vehicle-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px;}
+  .vehicle-chip{display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 10px;border:1.5px solid var(--border);border-radius:10px;cursor:pointer;font-size:13px;text-align:center;transition:all 0.15s;background:var(--white);user-select:none;}
+  .vehicle-chip:hover{border-color:var(--green);background:var(--green-light);}
+  .vehicle-chip.selected{border-color:var(--green);background:var(--green-light);color:var(--green-dark);font-weight:600;}
+  .vehicle-chip input{display:none;}
+  .vehicle-icon{font-size:24px;}
+
+  /* AVAILABILITY */
+  .avail-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:8px;}
+  .avail-chip{padding:12px 16px;border:1.5px solid var(--border);border-radius:10px;cursor:pointer;font-size:14px;font-weight:500;text-align:center;transition:all 0.15s;background:var(--white);}
+  .avail-chip:hover{border-color:var(--green);}
+  .avail-chip.selected{border-color:var(--green);background:var(--green-light);color:var(--green-dark);font-weight:600;}
+
+  /* BUTTONS */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 28px;border-radius:10px;border:none;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:all 0.2s;}
+  .btn-primary{background:var(--green);color:white;box-shadow:0 4px 14px rgba(0,168,107,0.3);width:100%;}
+  .btn-primary:hover{background:var(--green-dark);}
+  .btn-primary:disabled{background:#a0aec0;box-shadow:none;cursor:not-allowed;}
+  .btn-danger{background:#fff5f5;color:#e53e3e;border:1.5px solid #fed7d7;padding:8px 16px;font-size:13px;}
+
+  .toast{position:fixed;bottom:24px;right:24px;background:var(--navy);color:white;padding:14px 22px;border-radius:12px;font-size:14px;font-weight:500;box-shadow:0 8px 32px rgba(0,0,0,0.2);z-index:9999;transform:translateY(80px);opacity:0;transition:all 0.35s;max-width:320px;}
+  .toast.show{transform:translateY(0);opacity:1;}
+  .toast.success{border-left:4px solid var(--green);}
+  .toast.error{border-left:4px solid #e53e3e;}
+
+  footer{background:var(--navy);padding:24px;text-align:center;color:rgba(255,255,255,0.4);font-size:13px;margin-top:40px;}
+  footer a{color:rgba(255,255,255,0.5);text-decoration:none;margin:0 10px;}
+
+  @media(max-width:600px){.benefits{grid-template-columns:1fr;}.county-grid{grid-template-columns:repeat(3,1fr);}.vehicle-grid{grid-template-columns:repeat(2,1fr);}.avail-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast"></div>
+
+<nav>
+  <a href="index.html" class="logo">Compare<span>Mytow</span>.com</a>
+  <div class="nav-right">
+    <span class="portal-badge">🚛 Company Portal</span>
+    <a href="index.html" class="nav-back">← Customer site</a>
+  </div>
+</nav>
+
+<div class="main">
+
+  <!-- LANDING (shown when not logged in) -->
+  <div id="landingSection">
+    <div class="landing">
+      <div class="landing-icon">🚛</div>
+      <h1>Join CompareMytow.com</h1>
+      <p>Register your recovery business to receive live tow job requests from customers in your chosen counties — straight to your email inbox.</p>
+      <button class="google-btn" onclick="doCompanySignIn()">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg">
+        Sign in with Google to get started
+      </button>
+      <p style="font-size:13px;color:#94a3b8;margin-top:12px;">Use your business Gmail account for best results</p>
+    </div>
+    <div class="benefits">
+      <div class="benefit"><div class="benefit-icon">📍</div><h3>Choose your counties</h3><p>Only receive jobs from the areas you actually cover.</p></div>
+      <div class="benefit"><div class="benefit-icon">🚗</div><h3>Set vehicle types</h3><p>Cars, vans, HGVs, motorcycles — you decide what you take.</p></div>
+      <div class="benefit"><div class="benefit-icon">💶</div><h3>Free to join</h3><p>No subscription, no commission. CompareMytow.com is completely free for recovery operators.</p></div>
+    </div>
+  </div>
+
+  <!-- PORTAL (shown when logged in) -->
+  <div id="portalSection" style="display:none;">
+
+    <div class="portal-header">
+      <div class="company-avatar" id="companyAvatar">?</div>
+      <div style="flex:1;">
+        <h2 id="portalCompanyName">Your Company</h2>
+        <p id="portalEmail" style="color:var(--mid);font-size:14px;"></p>
+      </div>
+      <span class="status-pill status-pending" id="statusPill">⏳ Pending Review</span>
+    </div>
+
+    <!-- COMPANY DETAILS -->
+    <div class="section">
+      <div class="section-title">Company Details</div>
+      <div class="section-sub">This information helps customers know who they're dealing with.</div>
+      <div class="form-group">
+        <label>Company Name *</label>
+        <input type="text" id="companyName" placeholder="e.g. Murphy's Recovery Ltd">
+      </div>
+      <div class="form-group">
+        <label>Business Phone *</label>
+        <input type="tel" id="companyPhone" placeholder="08x xxx xxxx">
+      </div>
+      <div class="form-group">
+        <label>Business Email *</label>
+        <input type="email" id="companyEmail" placeholder="info@yourcompany.ie">
+        <div class="input-hint">Job requests will be sent to this email address</div>
+      </div>
+      <div class="form-group">
+        <label>Short Description</label>
+        <textarea id="companyDesc" placeholder="e.g. Family-run recovery service operating in Dublin and Wicklow for 15 years. Fully insured. Available 24/7."></textarea>
+      </div>
+    </div>
+
+    <!-- OPERATING COUNTIES -->
+    <div class="section">
+      <div class="section-title">Operating Counties</div>
+      <div class="section-sub">Select all counties where you are willing to respond to tow requests.</div>
+      <button class="select-all-btn" onclick="toggleAllCounties()">Select / Deselect All</button>
+      <div class="county-grid" id="countyGrid"></div>
+    </div>
+
+    <!-- VEHICLE TYPES -->
+    <div class="section">
+      <div class="section-title">Vehicle Types Accepted</div>
+      <div class="section-sub">What types of vehicles are you equipped to tow?</div>
+      <div class="vehicle-grid" id="vehicleGrid"></div>
+    </div>
+
+    <!-- AVAILABILITY -->
+    <div class="section">
+      <div class="section-title">Availability</div>
+      <div class="section-sub">When are you available to take jobs?</div>
+      <div class="avail-grid" id="availGrid"></div>
+    </div>
+
+    <!-- LEGAL -->
+    <div class="section">
+      <div class="section-title">Compliance Declaration</div>
+      <div class="section-sub">Required before your profile goes live.</div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-weight:400;">
+          <input type="checkbox" id="hasInsurance" style="width:16px;height:16px;margin-top:3px;flex-shrink:0;">
+          <span style="font-size:14px;color:var(--mid);">I confirm that my business holds valid <strong>motor trade liability insurance</strong> covering vehicle recovery operations.</span>
+        </label>
+        <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-weight:400;">
+          <input type="checkbox" id="isRegistered" style="width:16px;height:16px;margin-top:3px;flex-shrink:0;">
+          <span style="font-size:14px;color:var(--mid);">I confirm my business is <strong>registered with the Companies Registration Office (CRO)</strong> or operating as a sole trader in Ireland.</span>
+        </label>
+        <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-weight:400;">
+          <input type="checkbox" id="agreeCompanyTerms" style="width:16px;height:16px;margin-top:3px;flex-shrink:0;">
+          <span style="font-size:14px;color:var(--mid);">I have read and agree to the <a href="terms.html" target="_blank">Terms &amp; Conditions</a> and <a href="privacy.html" target="_blank">Privacy Policy</a> for Recovery Operators.</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- SAVE -->
+    <button class="btn btn-primary" id="saveBtn" onclick="saveProfile()">💾 Save Profile</button>
+
+    <div style="text-align:center;margin-top:20px;">
+      <button class="btn btn-danger" onclick="doSignOut()">Sign Out</button>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <a href="index.html">Customer Site</a>
+  <a href="terms.html">Terms</a>
+  <a href="privacy.html">Privacy</a>
+  <br><span style="margin-top:8px;display:block;">© 2025 CompareMytow.com</span>
+</footer>
+
+<script>
+const COUNTIES = [
+  'Antrim','Armagh','Carlow','Cavan','Clare','Cork','Derry',
+  'Donegal','Down','Dublin','Fermanagh','Galway','Kerry','Kildare',
+  'Kilkenny','Laois','Leitrim','Limerick','Longford','Louth',
+  'Mayo','Meath','Monaghan','Offaly','Roscommon','Sligo',
+  'Tipperary','Tyrone','Waterford','Westmeath','Wexford','Wicklow'
+];
+
+const VEHICLES = [
+  {id:'car',      label:'Car (Standard)',    icon:'🚗'},
+  {id:'ev',       label:'Electric / Hybrid', icon:'⚡'},
+  {id:'van',      label:'Van / LCV',         icon:'🚐'},
+  {id:'suv',      label:'4x4 / SUV',         icon:'🚙'},
+  {id:'moto',     label:'Motorcycle',        icon:'🏍️'},
+  {id:'hgv',      label:'HGV / Truck',       icon:'🚛'},
+  {id:'caravan',  label:'Caravan / Trailer', icon:'🏕️'},
+  {id:'classic',  label:'Classic / Vintage', icon:'🏎️'},
+  {id:'bus',      label:'Bus / Coach',       icon:'🚌'},
+];
+
+const AVAIL = [
+  {id:'247',   label:'24 / 7'},
+  {id:'biz',   label:'Business hours only'},
+  {id:'wknd',  label:'Weekends too'},
+  {id:'emer',  label:'Emergency callouts'},
+];
+
+// Firebase state
+let _db=null, _auth=null, _fn=null;
+let currentUser=null;
+let companyProfile={};
+
+// ---- INIT ----
+async function initFB(){
+  try{
+    const {initializeApp}=await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js");
+    const {getAuth,signInWithPopup,GoogleAuthProvider,signOut,onAuthStateChanged}=await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js");
+    const {getFirestore,doc,getDoc,setDoc,serverTimestamp}=await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+    const app=initializeApp({apiKey:"AIzaSyDxZ7GU6b66R8vnXgA3PbxRMhlfiuI-QQE",authDomain:"comparemytow-8a6a0.firebaseapp.com",projectId:"comparemytow-8a6a0",storageBucket:"comparemytow-8a6a0.firebasestorage.app",messagingSenderId:"327569636912",appId:"1:327569636912:web:cb04f82ac87f5f875877f5"});
+    _auth=getAuth(app); _db=getFirestore(app);
+    _fn={signInWithPopup,GoogleAuthProvider,signOut,onAuthStateChanged,doc,getDoc,setDoc,serverTimestamp};
+    _fn.onAuthStateChanged(_auth, async user=>{
+      currentUser=user;
+      if(user){ await loadProfile(user); showPortal(user); }
+      else { showLanding(); }
+    });
+  }catch(e){ console.warn('Firebase:',e.message); }
+}
+
+// ---- BUILD UI ----
+function buildCountyGrid(){
+  const grid=document.getElementById('countyGrid');
+  grid.innerHTML='';
+  COUNTIES.forEach(c=>{
+    const chip=document.createElement('div');
+    chip.className='county-chip';
+    chip.id='county-'+c;
+    chip.innerHTML=c;
+    chip.onclick=()=>chip.classList.toggle('selected');
+    grid.appendChild(chip);
+  });
+}
+
+function buildVehicleGrid(){
+  const grid=document.getElementById('vehicleGrid');
+  grid.innerHTML='';
+  VEHICLES.forEach(v=>{
+    const chip=document.createElement('div');
+    chip.className='vehicle-chip';
+    chip.id='veh-'+v.id;
+    chip.innerHTML=`<span class="vehicle-icon">${v.icon}</span>${v.label}`;
+    chip.onclick=()=>chip.classList.toggle('selected');
+    grid.appendChild(chip);
+  });
+}
+
+function buildAvailGrid(){
+  const grid=document.getElementById('availGrid');
+  grid.innerHTML='';
+  AVAIL.forEach(a=>{
+    const chip=document.createElement('div');
+    chip.className='avail-chip';
+    chip.id='avail-'+a.id;
+    chip.innerHTML=a.label;
+    chip.onclick=()=>{
+      document.querySelectorAll('.avail-chip').forEach(c=>c.classList.remove('selected'));
+      chip.classList.add('selected');
+    };
+    grid.appendChild(chip);
+  });
+}
+
+function toggleAllCounties(){
+  const allSelected=COUNTIES.every(c=>document.getElementById('county-'+c)?.classList.contains('selected'));
+  COUNTIES.forEach(c=>{
+    const el=document.getElementById('county-'+c);
+    if(el){ allSelected?el.classList.remove('selected'):el.classList.add('selected'); }
+  });
+}
+
+// ---- AUTH ----
+async function doCompanySignIn(){
+  if(!_auth||!_fn){ showToast('Loading, please try again.','error'); return; }
+  try{
+    const p=new _fn.GoogleAuthProvider();
+    await _fn.signInWithPopup(_auth,p);
+  }catch(e){ showToast('Sign-in failed: '+e.message,'error'); }
+}
+
+async function doSignOut(){
+  if(_auth&&_fn) await _fn.signOut(_auth);
+  showLanding();
+  showToast('Signed out','success');
+}
+
+// ---- SHOW/HIDE ----
+function showLanding(){
+  document.getElementById('landingSection').style.display='block';
+  document.getElementById('portalSection').style.display='none';
+}
+
+function showPortal(user){
+  document.getElementById('landingSection').style.display='none';
+  document.getElementById('portalSection').style.display='block';
+  document.getElementById('portalCompanyName').textContent=companyProfile.companyName||user.displayName||'Your Company';
+  document.getElementById('portalEmail').textContent=companyProfile.companyEmail||user.email||'';
+  const av=document.getElementById('companyAvatar');
+  if(user.photoURL){ av.innerHTML=`<img src="${user.photoURL}" alt="">`; }
+  else{ av.textContent=(user.displayName||'?')[0].toUpperCase(); }
+  const pill=document.getElementById('statusPill');
+  if(companyProfile.status==='approved'){
+    pill.className='status-pill status-approved'; pill.textContent='✅ Live';
+  } else {
+    pill.className='status-pill status-pending'; pill.textContent='⏳ Pending Review';
+  }
+}
+
+// ---- LOAD PROFILE ----
+async function loadProfile(user){
+  if(!_db||!_fn) return;
+  try{
+    const snap=await _fn.getDoc(_fn.doc(_db,'companies',user.uid));
+    if(snap.exists()){
+      companyProfile=snap.data();
+      // Populate form fields
+      document.getElementById('companyName').value=companyProfile.companyName||'';
+      document.getElementById('companyPhone').value=companyProfile.companyPhone||'';
+      document.getElementById('companyEmail').value=companyProfile.companyEmail||user.email||'';
+      document.getElementById('companyDesc').value=companyProfile.description||'';
+      document.getElementById('hasInsurance').checked=companyProfile.hasInsurance||false;
+      document.getElementById('isRegistered').checked=companyProfile.isRegistered||false;
+      document.getElementById('agreeCompanyTerms').checked=companyProfile.agreeTerms||false;
+      // Counties
+      (companyProfile.counties||[]).forEach(c=>{
+        const el=document.getElementById('county-'+c);
+        if(el) el.classList.add('selected');
+      });
+      // Vehicles
+      (companyProfile.vehicles||[]).forEach(v=>{
+        const el=document.getElementById('veh-'+v);
+        if(el) el.classList.add('selected');
+      });
+      // Availability
+      if(companyProfile.availability){
+        const el=document.getElementById('avail-'+companyProfile.availability);
+        if(el) el.classList.add('selected');
+      }
+    } else {
+      // Pre-fill email from Google account
+      document.getElementById('companyEmail').value=user.email||'';
+    }
+  }catch(e){ console.warn('loadProfile:',e); }
+}
+
+// ---- SAVE PROFILE ----
+async function saveProfile(){
+  if(!currentUser){ showToast('Please sign in first','error'); return; }
+
+  const name=document.getElementById('companyName').value.trim();
+  const phone=document.getElementById('companyPhone').value.trim();
+  const email=document.getElementById('companyEmail').value.trim();
+
+  if(!name||!phone||!email){
+    showToast('Please fill in company name, phone and email','error'); return;
+  }
+  if(!document.getElementById('hasInsurance').checked){
+    showToast('Please confirm you hold valid insurance','error'); return;
+  }
+  if(!document.getElementById('isRegistered').checked){
+    showToast('Please confirm your business registration','error'); return;
+  }
+  if(!document.getElementById('agreeCompanyTerms').checked){
+    showToast('Please agree to the Terms & Conditions','error'); return;
+  }
+
+  const counties=COUNTIES.filter(c=>document.getElementById('county-'+c)?.classList.contains('selected'));
+  if(counties.length===0){
+    showToast('Please select at least one county','error'); return;
+  }
+
+  const vehicles=VEHICLES.filter(v=>document.getElementById('veh-'+v.id)?.classList.contains('selected')).map(v=>v.id);
+  if(vehicles.length===0){
+    showToast('Please select at least one vehicle type','error'); return;
+  }
+
+  const availEl=document.querySelector('.avail-chip.selected');
+  const availability=availEl?availEl.id.replace('avail-',''):'';
+
+  const btn=document.getElementById('saveBtn');
+  btn.disabled=true; btn.textContent='Saving...';
+
+  const data={
+    companyName:   name,
+    companyPhone:  phone,
+    companyEmail:  email,
+    description:   document.getElementById('companyDesc').value.trim(),
+    counties,
+    vehicles,
+    availability,
+    hasInsurance:  true,
+    isRegistered:  true,
+    agreeTerms:    true,
+    userId:        currentUser.uid,
+    googleEmail:   currentUser.email,
+    status:        companyProfile.status||'pending',
+    updatedAt:     new Date().toISOString(),
+    createdAt:     companyProfile.createdAt||new Date().toISOString(),
+  };
+
+  try{
+    await _fn.setDoc(_fn.doc(_db,'companies',currentUser.uid), data, {merge:true});
+    companyProfile={...companyProfile,...data};
+    showToast('Profile saved! ✓ We will review your application shortly.','success');
+    // Update header
+    document.getElementById('portalCompanyName').textContent=name;
+    document.getElementById('portalEmail').textContent=email;
+  }catch(e){
+    showToast('Could not save: '+e.message,'error');
+  }
+
+  btn.disabled=false; btn.textContent='💾 Save Profile';
+}
+
+// ---- UTILS ----
+function showToast(msg,type='success'){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.className='toast '+type+' show';
+  setTimeout(()=>t.className='toast',3500);
+}
+
+// ---- BOOT ----
+buildCountyGrid();
+buildVehicleGrid();
+buildAvailGrid();
+initFB();
+</script>
+</body>
+</html>

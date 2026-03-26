@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Homepage -->
+  <url>
+    <loc>https://towingireland.ie/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- County Landing Pages -->
+  <url><loc>https://towingireland.ie/tow-truck-dublin.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://towingireland.ie/tow-truck-cork.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://towingireland.ie/tow-truck-galway.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://towingireland.ie/tow-truck-limerick.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://towingireland.ie/tow-truck-waterford.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://towingireland.ie/tow-truck-wicklow.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://towingireland.ie/tow-truck-kildare.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://towingireland.ie/tow-truck-meath.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://towingireland.ie/tow-truck-louth.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://towingireland.ie/tow-truck-wexford.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://towingireland.ie/tow-truck-kerry.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://towingireland.ie/tow-truck-tipperary.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://towingireland.ie/tow-truck-clare.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://towingireland.ie/tow-truck-mayo.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://towingireland.ie/tow-truck-sligo.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://towingireland.ie/tow-truck-donegal.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://towingireland.ie/tow-truck-cavan.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://towingireland.ie/tow-truck-monaghan.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://towingireland.ie/tow-truck-roscommon.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://towingireland.ie/tow-truck-laois.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://towingireland.ie/tow-truck-offaly.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://towingireland.ie/tow-truck-longford.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://towingireland.ie/tow-truck-westmeath.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://towingireland.ie/tow-truck-carlow.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://towingireland.ie/tow-truck-kilkenny.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://towingireland.ie/tow-truck-leitrim.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://towingireland.ie/tow-truck-antrim.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://towingireland.ie/tow-truck-down.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://towingireland.ie/tow-truck-armagh.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://towingireland.ie/tow-truck-derry.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://towingireland.ie/tow-truck-tyrone.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://towingireland.ie/tow-truck-fermanagh.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Company Portal -->
+  <url>
+    <loc>https://towingireland.ie/company-portal.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Legal Pages -->
+  <url>
+    <loc>https://towingireland.ie/terms.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://towingireland.ie/privacy.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+</urlset>
