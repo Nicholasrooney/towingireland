@@ -1,217 +1,311 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-IE">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LCLPY4MXZG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-LCLPY4MXZG');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tow Company Portal — CompareMytow.com</title>
+<title>Tow Company Portal — TowingIreland.ie</title>
+<meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{--green:#00A86B;--green-dark:#007a4e;--green-light:#e6f7f1;--orange:#FF6B2B;--navy:#0D1B2A;--slate:#1e2d3d;--mid:#4a5568;--light:#f7f9fc;--white:#ffffff;--border:#e2e8f0;--shadow:0 4px 24px rgba(13,27,42,0.10);--radius:14px;}
-  *{box-sizing:border-box;margin:0;padding:0;}
-  body{font-family:'DM Sans',sans-serif;background:var(--light);color:var(--navy);min-height:100vh;}
-  nav{background:var(--navy);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(0,0,0,0.18);}
-  .logo{font-family:'DM Serif Display',serif;font-size:22px;color:white;text-decoration:none;}
-  .logo span{color:var(--green);}
-  .nav-right{display:flex;gap:12px;align-items:center;}
-  .nav-back{color:rgba(255,255,255,0.7);font-size:14px;text-decoration:none;padding:6px 14px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);}
-  .portal-badge{background:rgba(0,168,107,0.2);color:var(--green);font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;border:1px solid rgba(0,168,107,0.3);}
-  .main{max-width:680px;margin:0 auto;padding:48px 24px 80px;}
-
-  /* LANDING */
-  .landing{text-align:center;padding:48px 0;}
-  .landing-icon{font-size:56px;margin-bottom:20px;}
-  .landing h1{font-family:'DM Serif Display',serif;font-size:36px;margin-bottom:12px;}
-  .landing p{color:var(--mid);font-size:16px;line-height:1.7;max-width:480px;margin:0 auto 32px;}
-  .google-btn{display:inline-flex;align-items:center;gap:10px;background:white;color:#3c4043;border:1.5px solid #dadce0;padding:14px 28px;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;transition:box-shadow 0.2s;font-family:'DM Sans',sans-serif;box-shadow:0 2px 8px rgba(0,0,0,0.08);}
-  .google-btn:hover{box-shadow:0 4px 16px rgba(0,0,0,0.15);}
-  .google-btn img{width:20px;height:20px;}
-  .benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px;text-align:left;}
-  .benefit{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);}
-  .benefit-icon{font-size:24px;margin-bottom:10px;}
-  .benefit h3{font-size:14px;font-weight:700;margin-bottom:6px;}
-  .benefit p{font-size:13px;color:var(--mid);line-height:1.5;}
-
-  /* PORTAL */
-  .portal-header{display:flex;align-items:center;gap:16px;margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--border);}
-  .company-avatar{width:56px;height:56px;border-radius:14px;background:var(--navy);display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:22px;color:white;flex-shrink:0;overflow:hidden;}
-  .company-avatar img{width:100%;height:100%;object-fit:cover;}
-  .portal-header h2{font-family:'DM Serif Display',serif;font-size:24px;margin-bottom:2px;}
-  .portal-header p{font-size:14px;color:var(--mid);}
-  .status-pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;}
-  .status-approved{background:var(--green-light);color:var(--green-dark);}
-  .status-pending{background:#fef3c7;color:#92400e;}
-
-  /* SECTIONS */
-  .section{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:28px;margin-bottom:20px;box-shadow:var(--shadow);}
-  .section-title{font-family:'DM Serif Display',serif;font-size:18px;margin-bottom:4px;}
-  .section-sub{font-size:13px;color:var(--mid);margin-bottom:20px;}
-
-  /* FORM ELEMENTS */
-  .form-group{margin-bottom:18px;}
-  label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;}
-  input[type=text],input[type=email],input[type=tel],textarea,select{width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--navy);outline:none;transition:border-color 0.2s;}
-  input:focus,textarea:focus,select:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(0,168,107,0.1);}
-  textarea{resize:vertical;min-height:80px;}
-  .input-hint{font-size:12px;color:#94a3b8;margin-top:4px;}
-
-  /* COUNTY GRID */
-  .county-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px;}
-  .county-chip{display:flex;align-items:center;gap:6px;padding:8px 10px;border:1.5px solid var(--border);border-radius:8px;cursor:pointer;font-size:13px;transition:all 0.15s;background:var(--white);user-select:none;}
-  .county-chip:hover{border-color:var(--green);background:var(--green-light);}
-  .county-chip.selected{border-color:var(--green);background:var(--green-light);color:var(--green-dark);font-weight:600;}
-  .county-chip input{display:none;}
-  .select-all-btn{font-size:12px;color:var(--green);cursor:pointer;font-weight:600;margin-bottom:10px;background:none;border:none;padding:0;}
-
-  /* VEHICLE TOGGLES */
-  .vehicle-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px;}
-  .vehicle-chip{display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 10px;border:1.5px solid var(--border);border-radius:10px;cursor:pointer;font-size:13px;text-align:center;transition:all 0.15s;background:var(--white);user-select:none;}
-  .vehicle-chip:hover{border-color:var(--green);background:var(--green-light);}
-  .vehicle-chip.selected{border-color:var(--green);background:var(--green-light);color:var(--green-dark);font-weight:600;}
-  .vehicle-chip input{display:none;}
-  .vehicle-icon{font-size:24px;}
-
-  /* AVAILABILITY */
-  .avail-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:8px;}
-  .avail-chip{padding:12px 16px;border:1.5px solid var(--border);border-radius:10px;cursor:pointer;font-size:14px;font-weight:500;text-align:center;transition:all 0.15s;background:var(--white);}
-  .avail-chip:hover{border-color:var(--green);}
-  .avail-chip.selected{border-color:var(--green);background:var(--green-light);color:var(--green-dark);font-weight:600;}
-
-  /* BUTTONS */
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 28px;border-radius:10px;border:none;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:all 0.2s;}
-  .btn-primary{background:var(--green);color:white;box-shadow:0 4px 14px rgba(0,168,107,0.3);width:100%;}
-  .btn-primary:hover{background:var(--green-dark);}
-  .btn-primary:disabled{background:#a0aec0;box-shadow:none;cursor:not-allowed;}
-  .btn-danger{background:#fff5f5;color:#e53e3e;border:1.5px solid #fed7d7;padding:8px 16px;font-size:13px;}
-
-  .toast{position:fixed;bottom:24px;right:24px;background:var(--navy);color:white;padding:14px 22px;border-radius:12px;font-size:14px;font-weight:500;box-shadow:0 8px 32px rgba(0,0,0,0.2);z-index:9999;transform:translateY(80px);opacity:0;transition:all 0.35s;max-width:320px;}
-  .toast.show{transform:translateY(0);opacity:1;}
-  .toast.success{border-left:4px solid var(--green);}
-  .toast.error{border-left:4px solid #e53e3e;}
-
-  footer{background:var(--navy);padding:24px;text-align:center;color:rgba(255,255,255,0.4);font-size:13px;margin-top:40px;}
-  footer a{color:rgba(255,255,255,0.5);text-decoration:none;margin:0 10px;}
-
-  @media(max-width:600px){.benefits{grid-template-columns:1fr;}.county-grid{grid-template-columns:repeat(3,1fr);}.vehicle-grid{grid-template-columns:repeat(2,1fr);}.avail-grid{grid-template-columns:1fr;}}
+:root{--green:#00A86B;--green-dark:#007a4e;--green-light:#e6f7f1;--orange:#FF6B2B;--navy:#0D1B2A;--mid:#4a5568;--light:#f7f9fc;--white:#ffffff;--border:#e2e8f0;--shadow:0 4px 24px rgba(13,27,42,0.10);--radius:14px;--red:#e53e3e;--red-light:#fff5f5;--amber:#d97706;--amber-light:#fffbeb;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--light);color:var(--navy);min-height:100vh;}
+nav{background:var(--navy);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(0,0,0,0.18);}
+.logo{font-family:'DM Serif Display',serif;font-size:22px;color:white;text-decoration:none;}
+.logo span{color:var(--green);}
+.nav-right{display:flex;gap:12px;align-items:center;}
+.portal-badge{background:rgba(0,168,107,0.2);color:var(--green);font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;border:1px solid rgba(0,168,107,0.3);}
+.nav-back{color:rgba(255,255,255,0.6);font-size:14px;text-decoration:none;padding:6px 14px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);}
+.main{max-width:700px;margin:0 auto;padding:48px 24px 80px;}
+.landing{text-align:center;padding:40px 0;}
+.landing-icon{font-size:56px;margin-bottom:20px;}
+.landing h1{font-family:'DM Serif Display',serif;font-size:34px;margin-bottom:12px;}
+.landing p{color:var(--mid);font-size:16px;line-height:1.7;max-width:480px;margin:0 auto 32px;}
+.google-btn{display:inline-flex;align-items:center;gap:10px;background:white;color:#3c4043;border:1.5px solid #dadce0;padding:14px 28px;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;box-shadow:0 2px 8px rgba(0,0,0,0.08);}
+.google-btn img{width:20px;}
+.benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px;text-align:left;}
+.benefit{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);}
+.benefit-icon{font-size:24px;margin-bottom:10px;}
+.benefit h3{font-size:14px;font-weight:700;margin-bottom:6px;}
+.benefit p{font-size:13px;color:var(--mid);line-height:1.5;}
+.portal-tabs{display:flex;gap:4px;background:var(--white);padding:5px;border-radius:12px;border:1px solid var(--border);margin-bottom:28px;box-shadow:var(--shadow);}
+.ptab{flex:1;padding:9px 8px;border-radius:9px;border:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:all 0.2s;background:none;color:var(--mid);text-align:center;}
+.ptab.active{background:var(--navy);color:white;}
+.ptab:hover:not(.active){background:var(--light);}
+.portal-header{display:flex;align-items:center;gap:16px;margin-bottom:24px;padding:18px 22px;background:var(--white);border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);}
+.company-avatar{width:52px;height:52px;border-radius:12px;background:var(--navy);display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:20px;color:white;flex-shrink:0;overflow:hidden;}
+.company-avatar img{width:100%;height:100%;object-fit:cover;}
+.portal-header h2{font-family:'DM Serif Display',serif;font-size:20px;margin-bottom:3px;}
+.status-pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;}
+.status-approved{background:var(--green-light);color:var(--green-dark);}
+.status-pending{background:#fff3e0;color:#92400e;}
+.status-needs_more_info{background:var(--amber-light);color:var(--amber);}
+.status-rejected{background:var(--red-light);color:var(--red);}
+.status-box{border-radius:var(--radius);padding:22px;margin-bottom:20px;}
+.status-box.approved{background:var(--green-light);border:1.5px solid rgba(0,168,107,0.25);}
+.status-box.pending{background:#fffbf0;border:1.5px solid #fde68a;}
+.status-box.needs_more_info{background:var(--amber-light);border:1.5px solid #fde68a;}
+.status-box.rejected{background:var(--red-light);border:1.5px solid #fecaca;}
+.status-box h3{font-size:16px;font-weight:700;margin-bottom:6px;}
+.status-box p{font-size:14px;line-height:1.7;color:var(--mid);}
+.feedback-block{margin-top:14px;background:white;border-radius:10px;padding:14px 16px;border:1px solid #fde68a;font-size:14px;line-height:1.7;}
+.feedback-block strong{display:block;font-size:11px;text-transform:uppercase;letter-spacing:0.4px;color:var(--amber);margin-bottom:6px;}
+.job-card{background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius);padding:16px 20px;margin-bottom:10px;cursor:pointer;transition:all 0.2s;animation:fadeIn 0.3s ease;}
+.job-card:hover{border-color:var(--green);box-shadow:0 4px 14px rgba(0,168,107,0.1);}
+.job-card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;gap:8px;}
+.job-id{font-weight:700;font-size:14px;}
+.job-detail{font-size:13px;color:var(--mid);line-height:1.6;}
+.job-preview{font-size:13px;color:var(--navy);margin-top:6px;padding-top:8px;border-top:1px solid var(--border);}
+.chat-back{margin-bottom:16px;}
+.chat-panel{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--border);overflow:hidden;}
+.chat-header{background:var(--navy);color:white;padding:14px 18px;}
+.chat-header-title{font-weight:600;font-size:15px;}
+.chat-header-sub{font-size:12px;opacity:0.6;margin-top:2px;}
+.chat-messages{height:300px;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:10px;background:#f8fafc;}
+.msg{max-width:78%;}
+.msg.out{align-self:flex-end;}
+.msg.inn{align-self:flex-start;}
+.msg-bubble{padding:10px 15px;border-radius:16px;font-size:14px;line-height:1.55;}
+.msg.out .msg-bubble{background:var(--green);color:white;border-bottom-right-radius:4px;}
+.msg.inn .msg-bubble{background:white;color:var(--navy);border:1px solid var(--border);border-bottom-left-radius:4px;}
+.msg-meta{font-size:11px;color:#94a3b8;margin-top:3px;text-align:right;}
+.msg.inn .msg-meta{text-align:left;}
+.chat-input-row{display:flex;gap:10px;padding:12px 16px;border-top:1px solid var(--border);background:white;align-items:flex-end;}
+.chat-input{flex:1;border:1.5px solid var(--border);border-radius:22px;padding:9px 16px;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;resize:none;max-height:80px;}
+.chat-input:focus{border-color:var(--green);}
+.chat-send-btn{width:40px;height:40px;border-radius:50%;background:var(--green);border:none;color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.section{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:18px;box-shadow:var(--shadow);}
+.section-title{font-family:'DM Serif Display',serif;font-size:18px;margin-bottom:4px;}
+.section-sub{font-size:13px;color:var(--mid);margin-bottom:20px;}
+.form-group{margin-bottom:18px;}
+label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;}
+input[type=text],input[type=email],input[type=tel],textarea,select{width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--navy);outline:none;transition:border-color 0.2s;}
+input:focus,textarea:focus,select:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(0,168,107,0.1);}
+textarea{resize:vertical;min-height:80px;}
+.input-hint{font-size:12px;color:#94a3b8;margin-top:4px;}
+.county-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px;}
+.county-chip{display:flex;align-items:center;padding:8px 10px;border:1.5px solid var(--border);border-radius:8px;cursor:pointer;font-size:13px;transition:all 0.15s;background:var(--white);user-select:none;}
+.county-chip:hover,.county-chip.selected{border-color:var(--green);background:var(--green-light);color:var(--green-dark);font-weight:600;}
+.select-all-btn{font-size:12px;color:var(--green);cursor:pointer;font-weight:600;margin-bottom:10px;background:none;border:none;padding:0;}
+.vehicle-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px;}
+.vehicle-chip{display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 10px;border:1.5px solid var(--border);border-radius:10px;cursor:pointer;font-size:13px;text-align:center;transition:all 0.15s;background:var(--white);user-select:none;}
+.vehicle-chip:hover,.vehicle-chip.selected{border-color:var(--green);background:var(--green-light);color:var(--green-dark);font-weight:600;}
+.vehicle-icon{font-size:24px;}
+.avail-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:8px;}
+.avail-chip{padding:12px 16px;border:1.5px solid var(--border);border-radius:10px;cursor:pointer;font-size:14px;font-weight:500;text-align:center;transition:all 0.15s;background:var(--white);}
+.avail-chip:hover,.avail-chip.selected{border-color:var(--green);background:var(--green-light);color:var(--green-dark);font-weight:600;}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;border-radius:10px;border:none;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.2s;}
+.btn-primary{background:var(--green);color:white;box-shadow:0 4px 14px rgba(0,168,107,0.3);width:100%;}
+.btn-primary:hover{background:var(--green-dark);}
+.btn-primary:disabled{background:#a0aec0;box-shadow:none;cursor:not-allowed;}
+.btn-secondary{background:var(--light);color:var(--navy);border:1.5px solid var(--border);}
+.btn-secondary:hover{background:#edf2f7;}
+.btn-danger{background:var(--red-light);color:var(--red);border:1.5px solid #fecaca;}
+.btn-danger:hover{background:#fee2e2;}
+.toggle-row{display:flex;align-items:center;justify-content:space-between;padding:16px 0;border-bottom:1px solid var(--border);gap:20px;}
+.toggle-row:last-child{border-bottom:none;padding-bottom:0;}
+.toggle-info h4{font-size:15px;font-weight:600;margin-bottom:3px;}
+.toggle-info p{font-size:13px;color:var(--mid);}
+.toggle{position:relative;width:48px;height:26px;flex-shrink:0;}
+.toggle input{opacity:0;width:0;height:0;}
+.toggle-slider{position:absolute;inset:0;background:#cbd5e0;border-radius:26px;cursor:pointer;transition:0.3s;}
+.toggle-slider:before{content:'';position:absolute;width:20px;height:20px;left:3px;top:3px;background:white;border-radius:50%;transition:0.3s;}
+input:checked+.toggle-slider{background:var(--green);}
+input:checked+.toggle-slider:before{transform:translateX(22px);}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.toast{position:fixed;bottom:24px;right:24px;background:var(--navy);color:white;padding:14px 22px;border-radius:12px;font-size:14px;font-weight:500;box-shadow:0 8px 32px rgba(0,0,0,0.2);z-index:9999;transform:translateY(80px);opacity:0;transition:all 0.35s;max-width:320px;}
+.toast.show{transform:translateY(0);opacity:1;}
+.toast.success{border-left:4px solid var(--green);}
+.toast.error{border-left:4px solid var(--red);}
+.modal-overlay{position:fixed;inset:0;background:rgba(13,27,42,0.55);display:flex;align-items:center;justify-content:center;z-index:999;padding:20px;backdrop-filter:blur(3px);}
+.modal{background:white;border-radius:var(--radius);padding:32px;max-width:420px;width:100%;}
+.modal h3{font-family:'DM Serif Display',serif;font-size:22px;margin-bottom:8px;}
+.modal p{font-size:14px;color:var(--mid);margin-bottom:22px;line-height:1.6;}
+.modal-actions{display:flex;gap:10px;}
+.inbox-empty{text-align:center;padding:40px 20px;color:var(--mid);}
+.inbox-empty .icon{font-size:40px;margin-bottom:12px;}
+footer{background:var(--navy);padding:24px;text-align:center;color:rgba(255,255,255,0.4);font-size:13px;margin-top:40px;}
+footer a{color:rgba(255,255,255,0.5);text-decoration:none;margin:0 10px;}
+@media(max-width:600px){nav{padding:0 16px;}.benefits{grid-template-columns:1fr;}.county-grid{grid-template-columns:repeat(3,1fr);}.vehicle-grid{grid-template-columns:repeat(2,1fr);}.avail-grid{grid-template-columns:1fr;}.ptab{font-size:12px;padding:8px 4px;}}
 </style>
 </head>
 <body>
-
 <div class="toast" id="toast"></div>
 
 <nav>
-  <a href="index.html" class="logo">Compare<span>Mytow</span>.com</a>
+  <a href="index.html" class="logo">Towing<span>Ireland</span>.ie</a>
   <div class="nav-right">
-    <span class="portal-badge">🚛 Company Portal</span>
-    <a href="index.html" class="nav-back">← Customer site</a>
+    <span class="portal-badge">&#128665; Company Portal</span>
+    <a href="index.html" class="nav-back">&#8592; Customer site</a>
   </div>
 </nav>
 
 <div class="main">
-
-  <!-- LANDING (shown when not logged in) -->
+  <!-- LANDING -->
   <div id="landingSection">
     <div class="landing">
-      <div class="landing-icon">🚛</div>
-      <h1>Join CompareMytow.com</h1>
-      <p>Register your recovery business to receive live tow job requests from customers in your chosen counties — straight to your email inbox.</p>
-      <button class="google-btn" onclick="doCompanySignIn()">
+      <div class="landing-icon">&#128665;</div>
+      <h1>Join TowingIreland.ie</h1>
+      <p>Register your recovery business to receive live tow job requests from customers in your chosen counties &mdash; straight to your email inbox.</p>
+      <button class="google-btn" id="signInBtn" onclick="doCompanySignIn()">
         <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg">
         Sign in with Google to get started
       </button>
       <p style="font-size:13px;color:#94a3b8;margin-top:12px;">Use your business Gmail account for best results</p>
+
     </div>
     <div class="benefits">
-      <div class="benefit"><div class="benefit-icon">📍</div><h3>Choose your counties</h3><p>Only receive jobs from the areas you actually cover.</p></div>
-      <div class="benefit"><div class="benefit-icon">🚗</div><h3>Set vehicle types</h3><p>Cars, vans, HGVs, motorcycles — you decide what you take.</p></div>
-      <div class="benefit"><div class="benefit-icon">💶</div><h3>Free to join</h3><p>No subscription, no commission. CompareMytow.com is completely free for recovery operators.</p></div>
+      <div class="benefit"><div class="benefit-icon">&#128205;</div><h3>Choose your counties</h3><p>Only receive jobs from the areas you cover.</p></div>
+      <div class="benefit"><div class="benefit-icon">&#128667;</div><h3>Set vehicle types</h3><p>Heavy vehicles only &mdash; 3,500kg to 44,000kg GVW, 18ft and longer.</p></div>
+      <div class="benefit"><div class="benefit-icon">&#128182;</div><h3>Free to join</h3><p>No subscription, no commission. Completely free for recovery operators.</p></div>
     </div>
   </div>
 
-  <!-- PORTAL (shown when logged in) -->
+  <!-- PORTAL -->
   <div id="portalSection" style="display:none;">
-
     <div class="portal-header">
       <div class="company-avatar" id="companyAvatar">?</div>
       <div style="flex:1;">
         <h2 id="portalCompanyName">Your Company</h2>
-        <p id="portalEmail" style="color:var(--mid);font-size:14px;"></p>
+        <div style="font-size:13px;color:var(--mid);margin-bottom:6px;" id="portalEmail"></div>
+        <span class="status-pill status-pending" id="statusPill">&#9203; Pending Review</span>
       </div>
-      <span class="status-pill status-pending" id="statusPill">⏳ Pending Review</span>
+      <button class="btn btn-secondary" onclick="doSignOut()" style="font-size:13px;padding:8px 14px;">Sign Out</button>
     </div>
 
-    <!-- COMPANY DETAILS -->
-    <div class="section">
-      <div class="section-title">Company Details</div>
-      <div class="section-sub">This information helps customers know who they're dealing with.</div>
-      <div class="form-group">
-        <label>Company Name *</label>
-        <input type="text" id="companyName" placeholder="e.g. Murphy's Recovery Ltd">
-      </div>
-      <div class="form-group">
-        <label>Business Phone *</label>
-        <input type="tel" id="companyPhone" placeholder="08x xxx xxxx">
-      </div>
-      <div class="form-group">
-        <label>Business Email *</label>
-        <input type="email" id="companyEmail" placeholder="info@yourcompany.ie">
-        <div class="input-hint">Job requests will be sent to this email address</div>
-      </div>
-      <div class="form-group">
-        <label>Short Description</label>
-        <textarea id="companyDesc" placeholder="e.g. Family-run recovery service operating in Dublin and Wicklow for 15 years. Fully insured. Available 24/7."></textarea>
-      </div>
+    <div class="portal-tabs">
+      <button class="ptab active" id="ptab-status"   onclick="showPortalTab('status')">&#128203; Status</button>
+      <button class="ptab"        id="ptab-messages" onclick="showPortalTab('messages')">&#128172; Messages</button>
+      <button class="ptab"        id="ptab-profile"  onclick="showPortalTab('profile')">&#9999;&#65039; Profile</button>
+      <button class="ptab"        id="ptab-settings" onclick="showPortalTab('settings')">&#9881;&#65039; Settings</button>
     </div>
 
-    <!-- OPERATING COUNTIES -->
-    <div class="section">
-      <div class="section-title">Operating Counties</div>
-      <div class="section-sub">Select all counties where you are willing to respond to tow requests.</div>
-      <button class="select-all-btn" onclick="toggleAllCounties()">Select / Deselect All</button>
-      <div class="county-grid" id="countyGrid"></div>
-    </div>
-
-    <!-- VEHICLE TYPES -->
-    <div class="section">
-      <div class="section-title">Vehicle Types Accepted</div>
-      <div class="section-sub">What types of vehicles are you equipped to tow?</div>
-      <div class="vehicle-grid" id="vehicleGrid"></div>
-    </div>
-
-    <!-- AVAILABILITY -->
-    <div class="section">
-      <div class="section-title">Availability</div>
-      <div class="section-sub">When are you available to take jobs?</div>
-      <div class="avail-grid" id="availGrid"></div>
-    </div>
-
-    <!-- LEGAL -->
-    <div class="section">
-      <div class="section-title">Compliance Declaration</div>
-      <div class="section-sub">Required before your profile goes live.</div>
-      <div style="display:flex;flex-direction:column;gap:12px;">
-        <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-weight:400;">
-          <input type="checkbox" id="hasInsurance" style="width:16px;height:16px;margin-top:3px;flex-shrink:0;">
-          <span style="font-size:14px;color:var(--mid);">I confirm that my business holds valid <strong>motor trade liability insurance</strong> covering vehicle recovery operations.</span>
-        </label>
-        <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-weight:400;">
-          <input type="checkbox" id="isRegistered" style="width:16px;height:16px;margin-top:3px;flex-shrink:0;">
-          <span style="font-size:14px;color:var(--mid);">I confirm my business is <strong>registered with the Companies Registration Office (CRO)</strong> or operating as a sole trader in Ireland.</span>
-        </label>
-        <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-weight:400;">
-          <input type="checkbox" id="agreeCompanyTerms" style="width:16px;height:16px;margin-top:3px;flex-shrink:0;">
-          <span style="font-size:14px;color:var(--mid);">I have read and agree to the <a href="terms.html" target="_blank">Terms &amp; Conditions</a> and <a href="privacy.html" target="_blank">Privacy Policy</a> for Recovery Operators.</span>
-        </label>
+    <!-- STATUS TAB -->
+    <div id="tab-status">
+      <div class="status-box pending" id="statusBox">
+        <h3 id="statusTitle">&#9203; Application under review</h3>
+        <p id="statusDesc">Your registration has been received and is being reviewed. You will receive an email once a decision has been made.</p>
+        <div class="feedback-block" id="feedbackBlock" style="display:none;">
+          <strong>Message from TowingIreland.ie:</strong>
+          <span id="feedbackText"></span>
+        </div>
+      </div>
+      <div class="section" style="margin-top:0;" id="statusSummarySection">
+        <div class="section-title">Your Registration Summary</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px;" id="summaryGrid"></div>
       </div>
     </div>
 
-    <!-- SAVE -->
-    <button class="btn btn-primary" id="saveBtn" onclick="saveProfile()">💾 Save Profile</button>
-
-    <div style="text-align:center;margin-top:20px;">
-      <button class="btn btn-danger" onclick="doSignOut()">Sign Out</button>
+    <!-- MESSAGES TAB -->
+    <div id="tab-messages" style="display:none;">
+      <div id="msgInbox"></div>
+      <div id="chatView" style="display:none;">
+        <div class="chat-back">
+          <button class="btn btn-secondary" onclick="backToInbox()" style="padding:8px 16px;font-size:13px;">&#8592; Back to Messages</button>
+        </div>
+        <div class="chat-panel">
+          <div class="chat-header">
+            <div class="chat-header-title" id="chatJobTitle">Job</div>
+            <div class="chat-header-sub">Customer details are hidden until job accepted on their side</div>
+          </div>
+          <div class="chat-messages" id="chatMessages"></div>
+          <div class="chat-input-row">
+            <textarea class="chat-input" id="chatInputBox" placeholder="Type your reply..." rows="1"
+              onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendCompanyMsg();}"></textarea>
+            <button class="chat-send-btn" onclick="sendCompanyMsg()">&#9654;</button>
+          </div>
+        </div>
+      </div>
     </div>
 
+    <!-- PROFILE TAB -->
+    <div id="tab-profile" style="display:none;">
+      <div class="section">
+        <div class="section-title">Company Details</div>
+        <div class="section-sub">Update your information at any time.</div>
+        <div class="form-group"><label>Company Name *</label><input type="text" id="companyName" placeholder="e.g. Murphy's Recovery Ltd"></div>
+        <div class="form-group"><label>Business Phone *</label><input type="tel" id="companyPhone" placeholder="08x xxx xxxx"></div>
+        <div class="form-group"><label>Business Email *</label><input type="email" id="companyEmail" placeholder="info@yourcompany.ie"><div class="input-hint">Job requests are sent to this address</div></div>
+        <div class="form-group"><label>Short Description</label><textarea id="companyDesc" placeholder="e.g. Family-run recovery service in Dublin and Wicklow for 15 years. Fully insured, 24/7."></textarea></div>
+      </div>
+      <div class="section">
+        <div class="section-title">Operating Counties</div>
+        <div class="section-sub">Select all counties where you respond to tow requests.</div>
+        <button class="select-all-btn" onclick="toggleAllCounties()">Select / Deselect All</button>
+        <div class="county-grid" id="countyGrid"></div>
+      </div>
+      <div class="section">
+        <div class="section-title">Vehicle Types Accepted</div>
+        <div class="vehicle-grid" id="vehicleGrid"></div>
+      </div>
+      <div class="section">
+        <div class="section-title">Availability</div>
+        <div class="avail-grid" id="availGrid"></div>
+      </div>
+      <div class="section">
+        <div class="section-title">Compliance Declaration</div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-weight:400;">
+            <input type="checkbox" id="hasInsurance" style="width:16px;height:16px;margin-top:3px;flex-shrink:0;">
+            <span style="font-size:14px;color:var(--mid);">I confirm my business holds valid <strong>motor trade liability insurance</strong> covering vehicle recovery.</span>
+          </label>
+          <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-weight:400;">
+            <input type="checkbox" id="isRegistered" style="width:16px;height:16px;margin-top:3px;flex-shrink:0;">
+            <span style="font-size:14px;color:var(--mid);">I confirm my business is <strong>registered with the CRO</strong> or operating as a sole trader in Ireland.</span>
+          </label>
+          <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-weight:400;">
+            <input type="checkbox" id="agreeCompanyTerms" style="width:16px;height:16px;margin-top:3px;flex-shrink:0;">
+            <span style="font-size:14px;color:var(--mid);">I agree to the <a href="terms.html" target="_blank" style="color:var(--green);">Terms &amp; Conditions</a> and <a href="privacy.html" target="_blank" style="color:var(--green);">Privacy Policy</a>.</span>
+          </label>
+        </div>
+      </div>
+      <button class="btn btn-primary" id="saveBtn" onclick="saveProfile()">&#128190; Save Profile</button>
+    </div>
+
+    <!-- SETTINGS TAB -->
+    <div id="tab-settings" style="display:none;">
+      <div class="section">
+        <div class="section-title">Account Settings</div>
+        <div class="section-sub">Manage how your company appears on the platform.</div>
+        <div class="toggle-row">
+          <div class="toggle-info">
+            <h4>Pause Job Notifications</h4>
+            <p>When paused, your company will not receive new tow job requests. Existing chats are not affected.</p>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="pauseToggle" onchange="togglePause()">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <div class="toggle-row">
+          <div class="toggle-info">
+            <h4 style="color:var(--red);">Delete Account</h4>
+            <p>Permanently remove your company profile and all associated data from TowingIreland.ie.</p>
+          </div>
+          <button class="btn btn-danger" onclick="confirmDelete()">Delete Account</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="deleteModal" style="display:none;">
+  <div class="modal">
+    <h3>Delete your account?</h3>
+    <p>This will permanently remove your company profile. You will stop receiving job requests immediately. This cannot be undone.</p>
+    <div class="modal-actions">
+      <button class="btn btn-danger" onclick="deleteAccount()" style="flex:1;">Yes, delete my account</button>
+      <button class="btn btn-secondary" onclick="document.getElementById('deleteModal').style.display='none'" style="flex:1;">Cancel</button>
+    </div>
   </div>
 </div>
 
@@ -219,155 +313,206 @@
   <a href="index.html">Customer Site</a>
   <a href="terms.html">Terms</a>
   <a href="privacy.html">Privacy</a>
-  <br><span style="margin-top:8px;display:block;">© 2025 CompareMytow.com</span>
+  <br><span style="margin-top:8px;display:block;">&copy; 2026 TowingIreland.ie</span>
 </footer>
 
 <script>
-const COUNTIES = [
-  'Antrim','Armagh','Carlow','Cavan','Clare','Cork','Derry',
-  'Donegal','Down','Dublin','Fermanagh','Galway','Kerry','Kildare',
-  'Kilkenny','Laois','Leitrim','Limerick','Longford','Louth',
-  'Mayo','Meath','Monaghan','Offaly','Roscommon','Sligo',
-  'Tipperary','Tyrone','Waterford','Westmeath','Wexford','Wicklow'
-];
+const COUNTIES=['Antrim','Armagh','Carlow','Cavan','Clare','Cork','Derry','Donegal','Down','Dublin','Fermanagh','Galway','Kerry','Kildare','Kilkenny','Laois','Leitrim','Limerick','Longford','Louth','Mayo','Meath','Monaghan','Offaly','Roscommon','Sligo','Tipperary','Tyrone','Waterford','Westmeath','Wexford','Wicklow'];
+const VEHICLES=[{id:'rigid',label:'Rigid Truck / Lorry',icon:'&#128666;'},{id:'artic',label:'Artic / Tractor Unit (to 44t)',icon:'&#128667;'},{id:'bus',label:'Bus / Coach',icon:'&#128652;'},{id:'tipper',label:'Tipper / Construction',icon:'&#127959;'},{id:'specialist',label:'Refuse / Specialist',icon:'&#128465;'},{id:'largevan',label:'Large Van / Horsebox 3.5t+',icon:'&#128656;'},{id:'motorhome',label:'Motorhome 3.5t+',icon:'&#127957;'},{id:'plant',label:'Plant / Agricultural',icon:'&#128668;'},{id:'trailer',label:'Heavy Trailer 3.5t+',icon:'&#128665;'}];
+const AVAIL=[{id:'247',label:'24 / 7'},{id:'biz',label:'Business hours only'},{id:'wknd',label:'Weekends too'},{id:'emer',label:'Emergency callouts'}];
+let _db=null,_auth=null,_fn=null,_delUser=null;
+let currentUser=null,companyProfile={},chatListener=null,activeChatJobId=null;
 
-const VEHICLES = [
-  {id:'car',      label:'Car (Standard)',    icon:'🚗'},
-  {id:'ev',       label:'Electric / Hybrid', icon:'⚡'},
-  {id:'van',      label:'Van / LCV',         icon:'🚐'},
-  {id:'suv',      label:'4x4 / SUV',         icon:'🚙'},
-  {id:'moto',     label:'Motorcycle',        icon:'🏍️'},
-  {id:'hgv',      label:'HGV / Truck',       icon:'🚛'},
-  {id:'caravan',  label:'Caravan / Trailer', icon:'🏕️'},
-  {id:'classic',  label:'Classic / Vintage', icon:'🏎️'},
-  {id:'bus',      label:'Bus / Coach',       icon:'🚌'},
-];
-
-const AVAIL = [
-  {id:'247',   label:'24 / 7'},
-  {id:'biz',   label:'Business hours only'},
-  {id:'wknd',  label:'Weekends too'},
-  {id:'emer',  label:'Emergency callouts'},
-];
-
-// Firebase state
-let _db=null, _auth=null, _fn=null;
-let currentUser=null;
-let companyProfile={};
-
-// ---- INIT ----
 async function initFB(){
   try{
     const {initializeApp}=await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js");
-    const {getAuth,signInWithPopup,GoogleAuthProvider,signOut,onAuthStateChanged}=await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js");
-    const {getFirestore,doc,getDoc,setDoc,serverTimestamp}=await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+    const {getAuth,signInWithPopup,GoogleAuthProvider,signOut,onAuthStateChanged,deleteUser,reauthenticateWithPopup}=await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js");
+    const {getFirestore,doc,getDoc,setDoc,deleteDoc,collection,query,where,getDocs,onSnapshot,addDoc,updateDoc}=await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
     const app=initializeApp({apiKey:"AIzaSyDxZ7GU6b66R8vnXgA3PbxRMhlfiuI-QQE",authDomain:"comparemytow-8a6a0.firebaseapp.com",projectId:"comparemytow-8a6a0",storageBucket:"comparemytow-8a6a0.firebasestorage.app",messagingSenderId:"327569636912",appId:"1:327569636912:web:cb04f82ac87f5f875877f5"});
-    _auth=getAuth(app); _db=getFirestore(app);
-    _fn={signInWithPopup,GoogleAuthProvider,signOut,onAuthStateChanged,doc,getDoc,setDoc,serverTimestamp};
-    _fn.onAuthStateChanged(_auth, async user=>{
+    _auth=getAuth(app);_db=getFirestore(app);_delUser=deleteUser;
+    _fn={signInWithPopup,GoogleAuthProvider,signOut,onAuthStateChanged,reauthenticateWithPopup,doc,getDoc,setDoc,deleteDoc,collection,query,where,getDocs,onSnapshot,addDoc,updateDoc};
+    _fn.onAuthStateChanged(_auth,async user=>{
       currentUser=user;
-      if(user){ await loadProfile(user); showPortal(user); }
-      else { showLanding(); }
+      if(user){await loadProfile(user);showPortal(user);}
+      else{showLanding();}
     });
-  }catch(e){ console.warn('Firebase:',e.message); }
-}
-
-// ---- BUILD UI ----
-function buildCountyGrid(){
-  const grid=document.getElementById('countyGrid');
-  grid.innerHTML='';
-  COUNTIES.forEach(c=>{
-    const chip=document.createElement('div');
-    chip.className='county-chip';
-    chip.id='county-'+c;
-    chip.innerHTML=c;
-    chip.onclick=()=>chip.classList.toggle('selected');
-    grid.appendChild(chip);
-  });
-}
-
-function buildVehicleGrid(){
-  const grid=document.getElementById('vehicleGrid');
-  grid.innerHTML='';
-  VEHICLES.forEach(v=>{
-    const chip=document.createElement('div');
-    chip.className='vehicle-chip';
-    chip.id='veh-'+v.id;
-    chip.innerHTML=`<span class="vehicle-icon">${v.icon}</span>${v.label}`;
-    chip.onclick=()=>chip.classList.toggle('selected');
-    grid.appendChild(chip);
-  });
-}
-
-function buildAvailGrid(){
-  const grid=document.getElementById('availGrid');
-  grid.innerHTML='';
-  AVAIL.forEach(a=>{
-    const chip=document.createElement('div');
-    chip.className='avail-chip';
-    chip.id='avail-'+a.id;
-    chip.innerHTML=a.label;
-    chip.onclick=()=>{
-      document.querySelectorAll('.avail-chip').forEach(c=>c.classList.remove('selected'));
-      chip.classList.add('selected');
-    };
-    grid.appendChild(chip);
-  });
-}
-
-function toggleAllCounties(){
-  const allSelected=COUNTIES.every(c=>document.getElementById('county-'+c)?.classList.contains('selected'));
-  COUNTIES.forEach(c=>{
-    const el=document.getElementById('county-'+c);
-    if(el){ allSelected?el.classList.remove('selected'):el.classList.add('selected'); }
-  });
-}
-
-// ---- AUTH ----
-async function doCompanySignIn(){
-  if(!_auth||!_fn){ showToast('Loading, please try again.','error'); return; }
-  try{
-    const p=new _fn.GoogleAuthProvider();
-    await _fn.signInWithPopup(_auth,p);
-  }catch(e){ showToast('Sign-in failed: '+e.message,'error'); }
-}
-
-async function doSignOut(){
-  if(_auth&&_fn) await _fn.signOut(_auth);
-  showLanding();
-  showToast('Signed out','success');
-}
-
-// ---- SHOW/HIDE ----
-function showLanding(){
-  document.getElementById('landingSection').style.display='block';
-  document.getElementById('portalSection').style.display='none';
-}
-
-function showPortal(user){
-  document.getElementById('landingSection').style.display='none';
-  document.getElementById('portalSection').style.display='block';
-  document.getElementById('portalCompanyName').textContent=companyProfile.companyName||user.displayName||'Your Company';
-  document.getElementById('portalEmail').textContent=companyProfile.companyEmail||user.email||'';
-  const av=document.getElementById('companyAvatar');
-  if(user.photoURL){ av.innerHTML=`<img src="${user.photoURL}" alt="">`; }
-  else{ av.textContent=(user.displayName||'?')[0].toUpperCase(); }
-  const pill=document.getElementById('statusPill');
-  if(companyProfile.status==='approved'){
-    pill.className='status-pill status-approved'; pill.textContent='✅ Live';
-  } else {
-    pill.className='status-pill status-pending'; pill.textContent='⏳ Pending Review';
+    console.log('Portal Firebase OK');
+  }catch(e){
+    console.warn('Portal Firebase error:',e.message);
+    showToast('Could not connect to server: '+e.message,'error');
   }
 }
 
-// ---- LOAD PROFILE ----
+function buildGrids(){
+  const cg=document.getElementById('countyGrid');cg.innerHTML='';
+  COUNTIES.forEach(c=>{const ch=document.createElement('div');ch.className='county-chip';ch.id='county-'+c;ch.textContent=c;ch.onclick=()=>ch.classList.toggle('selected');cg.appendChild(ch);});
+  const vg=document.getElementById('vehicleGrid');vg.innerHTML='';
+  VEHICLES.forEach(v=>{const ch=document.createElement('div');ch.className='vehicle-chip';ch.id='veh-'+v.id;ch.innerHTML='<span class="vehicle-icon">'+v.icon+'</span>'+v.label;ch.onclick=()=>ch.classList.toggle('selected');vg.appendChild(ch);});
+  const ag=document.getElementById('availGrid');ag.innerHTML='';
+  AVAIL.forEach(a=>{const ch=document.createElement('div');ch.className='avail-chip';ch.id='avail-'+a.id;ch.textContent=a.label;ch.onclick=()=>{document.querySelectorAll('.avail-chip').forEach(x=>x.classList.remove('selected'));ch.classList.add('selected');};ag.appendChild(ch);});
+}
+function toggleAllCounties(){const all=COUNTIES.every(c=>document.getElementById('county-'+c)?.classList.contains('selected'));COUNTIES.forEach(c=>{const el=document.getElementById('county-'+c);if(el){all?el.classList.remove('selected'):el.classList.add('selected');}});}
+window.toggleAllCounties=toggleAllCounties;
+
+async function doCompanySignIn(){
+  if(!_auth||!_fn){showToast('Loading, please try again shortly.','error');return;}
+  try{
+    await _fn.signInWithPopup(_auth,new _fn.GoogleAuthProvider());
+    showToast('Signed in ✓','success');
+  }catch(e){showToast('Sign-in failed: '+e.message,'error');}
+}
+async function doSignOut(){if(chatListener){chatListener();chatListener=null;}if(_auth&&_fn)await _fn.signOut(_auth);showLanding();showToast('Signed out','success');}
+window.doSignOut=doSignOut;window.doCompanySignIn=doCompanySignIn;
+
+function showLanding(){document.getElementById('landingSection').style.display='block';document.getElementById('portalSection').style.display='none';}
+function showPortal(user){
+  document.getElementById('landingSection').style.display='none';
+  document.getElementById('portalSection').style.display='block';
+  const av=document.getElementById('companyAvatar');
+  if(user.photoURL){av.innerHTML='<img src="'+user.photoURL+'" alt="">';}else{av.textContent=(user.displayName||'?')[0].toUpperCase();}
+  document.getElementById('portalEmail').textContent=companyProfile.companyEmail||user.email||'';
+  document.getElementById('portalCompanyName').textContent=companyProfile.companyName||user.displayName||'Your Company';
+  const pill=document.getElementById('statusPill');
+  const pm={approved:{cls:'status-approved',label:'&#9989; Live &mdash; Receiving Jobs'},pending:{cls:'status-pending',label:'&#9203; Pending Review'},needs_more_info:{cls:'status-needs_more_info',label:'&#9888;&#65039; More Info Required'},rejected:{cls:'status-rejected',label:'&#10005; Not Approved'}}[companyProfile.status||'pending'];
+  pill.className='status-pill '+(pm?.cls||'status-pending');pill.innerHTML=pm?.label||'&#9203; Pending Review';
+  renderStatusTab();showPortalTab('status');
+}
+
+function showPortalTab(tab){
+  ['status','messages','profile','settings'].forEach(t=>{
+    document.getElementById('tab-'+t).style.display=t===tab?'block':'none';
+    document.getElementById('ptab-'+t).classList.toggle('active',t===tab);
+  });
+  if(tab==='messages')loadInbox();
+  if(tab==='settings')document.getElementById('pauseToggle').checked=!!companyProfile.paused;
+}
+window.showPortalTab=showPortalTab;
+
+function renderStatusTab(){
+  const box=document.getElementById('statusBox');
+  const sg=document.getElementById('summaryGrid');
+  const fb=document.getElementById('feedbackBlock');
+  document.getElementById('statusSummarySection').style.display='block';
+
+  // No application submitted yet — profile has never been saved
+  if(!companyProfile.companyName){
+    box.className='status-box pending';
+    document.getElementById('statusTitle').innerHTML='&#128221; No application submitted yet';
+    document.getElementById('statusDesc').textContent='Fill in your company profile to apply to join TowingIreland.ie. Once submitted, your application will be reviewed within 24 hours.';
+    fb.style.display='none';
+    var applyBtn=document.createElement('div');
+    applyBtn.style.cssText='grid-column:1/-1;text-align:center;padding:16px 0;';
+    applyBtn.innerHTML='<button class="btn btn-primary" style="width:auto;padding:14px 36px;font-size:16px;">&#128221; Complete Your Application</button>';
+    applyBtn.querySelector('button').onclick=function(){showPortalTab('profile');};
+    sg.innerHTML='';
+    sg.appendChild(applyBtn);
+    return;
+  }
+
+  const s=companyProfile.status||'pending';
+  const cfg={
+    approved:{cls:'approved',title:'&#9989; You are live!',desc:'Your application has been approved. Your company is now active and receiving tow job requests in your selected counties.'},
+    pending:{cls:'pending',title:'&#9203; Application under review',desc:'Your registration has been received and is being reviewed by the TowingIreland.ie team. You will receive an email once a decision has been made — usually within 24 hours.'},
+    needs_more_info:{cls:'needs_more_info',title:'&#9888; More information required',desc:'We need some additional details before we can approve your application. Please see the message below, update your profile, and re-save.'},
+    rejected:{cls:'rejected',title:'Application not approved',desc:'Your application could not be approved at this time. Please contact comparemytow@gmail.com if you believe this is an error or would like to provide more information.'},
+  }[s]||{cls:'pending',title:'&#9203; Under review',desc:''};
+
+  box.className='status-box '+cfg.cls;
+  document.getElementById('statusTitle').innerHTML=cfg.title;
+  document.getElementById('statusDesc').textContent=cfg.desc;
+  if(companyProfile.adminFeedback&&s==='needs_more_info'){
+    fb.style.display='block';
+    document.getElementById('feedbackText').textContent=companyProfile.adminFeedback;
+  }else{
+    fb.style.display='none';
+  }
+  const item=function(l,v){return '<div style="background:var(--light);border-radius:10px;padding:12px 14px;"><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:#94a3b8;margin-bottom:4px;">'+l+'</div><div style="font-size:14px;font-weight:500;">'+esc(v)+'</div></div>';};
+  sg.innerHTML=item('Email',companyProfile.companyEmail||'—')
+    +item('Phone',companyProfile.companyPhone||'—')
+    +item('Availability',companyProfile.availability||'—')
+    +item('Counties',(companyProfile.counties&&companyProfile.counties.length||0)+' selected')
+    +item('Vehicle Types',(companyProfile.vehicles&&companyProfile.vehicles.length||0)+' types')
+    +item('Status',companyProfile.paused?'Paused':'Active');
+}
+
+async function loadInbox(){
+  const inbox=document.getElementById('msgInbox');
+  document.getElementById('chatView').style.display='none';inbox.style.display='block';
+  if(!_db||!_fn||!currentUser){inbox.innerHTML='<div class="inbox-empty"><div class="icon">&#128274;</div><p>Sign in to view messages.</p></div>';return;}
+  inbox.innerHTML='<div style="text-align:center;padding:32px;color:var(--mid);">Loading...</div>';
+  try{
+    const email=companyProfile.companyEmail||currentUser.email;
+    const snap=await _fn.getDocs(_fn.collection(_db,'jobs'));
+    const myJobs=[];
+    snap.forEach(d=>{const j=d.data();if(j.companies?.some(c=>c.email===email||c.id===currentUser.uid))myJobs.push({id:d.id,...j});});
+    if(!myJobs.length){inbox.innerHTML='<div class="inbox-empty"><div class="icon">&#128229;</div><h3 style="font-family:DM Serif Display,serif;font-size:20px;margin-bottom:8px;">No jobs yet</h3><p style="font-size:14px;">Once your account is approved, job requests will appear here.</p></div>';return;}
+    myJobs.sort((a,b)=>new Date(b.createdAt||0)-new Date(a.createdAt||0));
+    inbox.innerHTML=myJobs.map(function(j){
+      var d=j.createdAt?new Date(j.createdAt).toLocaleString('en-IE',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'}):'';
+      var st=j.status==='accepted'
+        ?'<span style="font-size:11px;background:var(--green-light);color:var(--green-dark);padding:2px 8px;border-radius:10px;font-weight:600;">Accepted</span>'
+        :'<span style="font-size:11px;background:#fef3c7;color:#92400e;padding:2px 8px;border-radius:10px;font-weight:600;">Open</span>';
+      var card=document.createElement('div');
+      card.className='job-card';
+      card.onclick=function(){openJobChat(j.id,j.pickupLocation||'',j.vehicleModel||'');};
+      card.innerHTML='<div class="job-card-top"><span class="job-id">&#128663; '+esc(j.vehicleModel||'Vehicle')+' &mdash; '+esc(j.vehicleType||'')+'</span>'+st+'</div>'
+        +'<div class="job-detail">&#128205; '+esc(j.pickupLocation||'')+' &rarr; '+esc(j.dropoffLocation||'')+'<br>&#128336; '+esc(j.pickupTime||'')+' &middot; '+d+'</div>'
+        +(j.issueType?'<div class="job-preview">Issue: '+esc(j.issueType)+'</div>':'');
+      return card.outerHTML;
+    }).join('');
+  }catch(e){inbox.innerHTML='<div class="inbox-empty">&#9888;&#65039; Could not load: '+e.message+'</div>';}
+}
+
+window.openJobChat=function(jobId,pickup,model){
+  activeChatJobId=jobId;
+  document.getElementById('msgInbox').style.display='none';
+  document.getElementById('chatView').style.display='block';
+  document.getElementById('chatJobTitle').textContent=(model||'Vehicle')+' — '+(pickup||'Location');
+  loadChatMessages(jobId);
+};
+window.backToInbox=function(){if(chatListener){chatListener();chatListener=null;}activeChatJobId=null;document.getElementById('chatView').style.display='none';document.getElementById('msgInbox').style.display='block';};
+
+function loadChatMessages(jobId){
+  if(!_db||!_fn)return;
+  if(chatListener){chatListener();chatListener=null;}
+  const el=document.getElementById('chatMessages');el.innerHTML='';
+  const email=companyProfile.companyEmail||currentUser.email;
+  const q=_fn.query(_fn.collection(_db,'messages'),_fn.where('jobId','==',jobId));
+  chatListener=_fn.onSnapshot(q,snap=>{
+    const msgs=[];snap.forEach(d=>msgs.push(d.data()));
+    msgs.sort((a,b)=>new Date(a.createdAt||0)-new Date(b.createdAt||0));
+    el.innerHTML='';
+    msgs.forEach(m=>{
+      const isOut=m.sender==='company'&&(m.companyEmail===email||m.companyId===currentUser.uid);
+      const d=document.createElement('div');d.className='msg '+(isOut?'out':'inn');
+      let t='';try{const ts=m.createdAt;t=new Date(ts.toDate?ts.toDate():ts).toLocaleTimeString('en-IE',{hour:'2-digit',minute:'2-digit'});}catch(e){}
+      d.innerHTML='<div class="msg-bubble">'+esc(m.text)+'</div><div class="msg-meta">'+t+'</div>';
+      el.appendChild(d);
+    });
+    el.scrollTop=el.scrollHeight;
+  },e=>console.warn(e));
+}
+
+window.sendCompanyMsg=async function(){
+  const input=document.getElementById('chatInputBox');
+  const text=input.value.trim();if(!text||!activeChatJobId)return;
+  input.value='';
+  try{
+    await _fn.addDoc(_fn.collection(_db,'messages'),{
+      jobId:activeChatJobId,companyId:currentUser.uid,
+      companyName:companyProfile.companyName||currentUser.displayName||'Company',
+      companyEmail:companyProfile.companyEmail||currentUser.email,
+      sender:'company',text,createdAt:new Date().toISOString(),source:'portal'
+    });
+  }catch(e){showToast('Could not send: '+e.message,'error');}
+};
+
 async function loadProfile(user){
-  if(!_db||!_fn) return;
+  if(!_db||!_fn)return;
   try{
     const snap=await _fn.getDoc(_fn.doc(_db,'companies',user.uid));
     if(snap.exists()){
       companyProfile=snap.data();
-      // Populate form fields
       document.getElementById('companyName').value=companyProfile.companyName||'';
       document.getElementById('companyPhone').value=companyProfile.companyPhone||'';
       document.getElementById('companyEmail').value=companyProfile.companyEmail||user.email||'';
@@ -375,109 +520,80 @@ async function loadProfile(user){
       document.getElementById('hasInsurance').checked=companyProfile.hasInsurance||false;
       document.getElementById('isRegistered').checked=companyProfile.isRegistered||false;
       document.getElementById('agreeCompanyTerms').checked=companyProfile.agreeTerms||false;
-      // Counties
-      (companyProfile.counties||[]).forEach(c=>{
-        const el=document.getElementById('county-'+c);
-        if(el) el.classList.add('selected');
-      });
-      // Vehicles
-      (companyProfile.vehicles||[]).forEach(v=>{
-        const el=document.getElementById('veh-'+v);
-        if(el) el.classList.add('selected');
-      });
-      // Availability
-      if(companyProfile.availability){
-        const el=document.getElementById('avail-'+companyProfile.availability);
-        if(el) el.classList.add('selected');
-      }
-    } else {
-      // Pre-fill email from Google account
-      document.getElementById('companyEmail').value=user.email||'';
-    }
-  }catch(e){ console.warn('loadProfile:',e); }
+      (companyProfile.counties||[]).forEach(c=>{const el=document.getElementById('county-'+c);if(el)el.classList.add('selected');});
+      (companyProfile.vehicles||[]).forEach(v=>{const el=document.getElementById('veh-'+v);if(el)el.classList.add('selected');});
+      if(companyProfile.availability){const el=document.getElementById('avail-'+companyProfile.availability);if(el)el.classList.add('selected');}
+    }else{document.getElementById('companyEmail').value=user.email||'';}
+  }catch(e){console.warn('loadProfile:',e);}
 }
 
-// ---- SAVE PROFILE ----
 async function saveProfile(){
-  if(!currentUser){ showToast('Please sign in first','error'); return; }
-
+  if(!currentUser){showToast('Please sign in first','error');return;}
   const name=document.getElementById('companyName').value.trim();
   const phone=document.getElementById('companyPhone').value.trim();
   const email=document.getElementById('companyEmail').value.trim();
-
-  if(!name||!phone||!email){
-    showToast('Please fill in company name, phone and email','error'); return;
-  }
-  if(!document.getElementById('hasInsurance').checked){
-    showToast('Please confirm you hold valid insurance','error'); return;
-  }
-  if(!document.getElementById('isRegistered').checked){
-    showToast('Please confirm your business registration','error'); return;
-  }
-  if(!document.getElementById('agreeCompanyTerms').checked){
-    showToast('Please agree to the Terms & Conditions','error'); return;
-  }
-
+  if(!name||!phone||!email){showToast('Please fill company name, phone and email','error');return;}
+  if(!document.getElementById('hasInsurance').checked){showToast('Please confirm insurance','error');return;}
+  if(!document.getElementById('isRegistered').checked){showToast('Please confirm CRO registration','error');return;}
+  if(!document.getElementById('agreeCompanyTerms').checked){showToast('Please agree to the Terms','error');return;}
   const counties=COUNTIES.filter(c=>document.getElementById('county-'+c)?.classList.contains('selected'));
-  if(counties.length===0){
-    showToast('Please select at least one county','error'); return;
-  }
-
+  if(!counties.length){showToast('Please select at least one county','error');return;}
   const vehicles=VEHICLES.filter(v=>document.getElementById('veh-'+v.id)?.classList.contains('selected')).map(v=>v.id);
-  if(vehicles.length===0){
-    showToast('Please select at least one vehicle type','error'); return;
-  }
-
+  if(!vehicles.length){showToast('Please select at least one vehicle type','error');return;}
   const availEl=document.querySelector('.avail-chip.selected');
-  const availability=availEl?availEl.id.replace('avail-',''):'';
-
-  const btn=document.getElementById('saveBtn');
-  btn.disabled=true; btn.textContent='Saving...';
-
-  const data={
-    companyName:   name,
-    companyPhone:  phone,
-    companyEmail:  email,
-    description:   document.getElementById('companyDesc').value.trim(),
-    counties,
-    vehicles,
-    availability,
-    hasInsurance:  true,
-    isRegistered:  true,
-    agreeTerms:    true,
-    userId:        currentUser.uid,
-    googleEmail:   currentUser.email,
-    status:        companyProfile.status||'pending',
-    updatedAt:     new Date().toISOString(),
-    createdAt:     companyProfile.createdAt||new Date().toISOString(),
-  };
-
+  const btn=document.getElementById('saveBtn');btn.disabled=true;btn.textContent='Saving...';
+  const data={companyName:name,companyPhone:phone,companyEmail:email,description:document.getElementById('companyDesc').value.trim(),counties,vehicles,availability:availEl?availEl.id.replace('avail-',''):'',hasInsurance:true,isRegistered:true,agreeTerms:true,userId:currentUser.uid,googleEmail:currentUser.email,status:companyProfile.status||'pending',paused:companyProfile.paused||false,updatedAt:new Date().toISOString(),createdAt:companyProfile.createdAt||new Date().toISOString()};
   try{
-    await _fn.setDoc(_fn.doc(_db,'companies',currentUser.uid), data, {merge:true});
+    await _fn.setDoc(_fn.doc(_db,'companies',currentUser.uid),data,{merge:true});
     companyProfile={...companyProfile,...data};
-    showToast('Profile saved! ✓ We will review your application shortly.','success');
-    // Update header
     document.getElementById('portalCompanyName').textContent=name;
     document.getElementById('portalEmail').textContent=email;
+    renderStatusTab();showToast('Profile saved &#10003;','success');showPortalTab('status');
+  }catch(e){showToast('Could not save: '+e.message,'error');}
+  btn.disabled=false;btn.textContent='&#128190; Save Profile';
+}
+window.saveProfile=saveProfile;
+
+async function togglePause(){
+  if(!currentUser||!_db||!_fn)return;
+  const paused=document.getElementById('pauseToggle').checked;
+  try{
+    await _fn.updateDoc(_fn.doc(_db,'companies',currentUser.uid),{paused,updatedAt:new Date().toISOString()});
+    companyProfile.paused=paused;renderStatusTab();
+    showToast(paused?'&#9208;&#65039; Job notifications paused':'&#9654;&#65039; Job notifications resumed','success');
+  }catch(e){showToast('Could not update: '+e.message,'error');}
+}
+window.togglePause=togglePause;
+
+function confirmDelete(){document.getElementById('deleteModal').style.display='flex';}
+window.confirmDelete=confirmDelete;
+
+async function deleteAccount(){
+  if(!currentUser)return;
+  try{
+    // Re-authenticate first — Firebase requires recent login before account deletion
+    await _fn.reauthenticateWithPopup(_auth.currentUser, new _fn.GoogleAuthProvider());
+    // Delete Firestore profile
+    await _fn.deleteDoc(_fn.doc(_db,'companies',currentUser.uid));
+    // Delete Firebase Auth account
+    if(_delUser&&_auth.currentUser) await _delUser(_auth.currentUser);
+    document.getElementById('deleteModal').style.display='none';
+    showLanding();
+    showToast('Account deleted successfully','success');
   }catch(e){
-    showToast('Could not save: '+e.message,'error');
+    if(e.code==='auth/popup-closed-by-user'){
+      showToast('Cancelled — account not deleted','success');
+    }else{
+      showToast('Delete failed: '+e.message,'error');
+    }
   }
-
-  btn.disabled=false; btn.textContent='💾 Save Profile';
 }
+window.deleteAccount=deleteAccount;
 
-// ---- UTILS ----
-function showToast(msg,type='success'){
-  const t=document.getElementById('toast');
-  t.textContent=msg; t.className='toast '+type+' show';
-  setTimeout(()=>t.className='toast',3500);
-}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function showToast(msg,type='success'){const t=document.getElementById('toast');t.innerHTML=msg;t.className='toast '+type+' show';setTimeout(()=>t.className='toast',3500);}
 
-// ---- BOOT ----
-buildCountyGrid();
-buildVehicleGrid();
-buildAvailGrid();
-initFB();
+buildGrids();initFB();
 </script>
 </body>
 </html>

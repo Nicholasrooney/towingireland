@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Deploy Tool</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e17;
+    --surface: #111827;
+    --surface2: #1a2333;
+    --border: #1f2d42;
+    --green: #00d97e;
+    --green-dim: rgba(0,217,126,0.12);
+    --green-glow: rgba(0,217,126,0.25);
+    --red: #ff4d6d;
+    --yellow: #ffd166;
+    --text: #e2e8f0;
+    --muted: #4a6080;
+    --radius: 12px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Syne', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 32px 20px 60px;
+  }
+
+  /* Subtle grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,217,126,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,217,126,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrap { max-width: 680px; margin: 0 auto; position: relative; z-index: 1; }
+
+  /* Header */
+  .header { margin-bottom: 40px; }
+  .logo-row { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+  .logo-icon {
+    width: 40px; height: 40px;
+    background: var(--green-dim);
+    border: 1px solid var(--green);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    box-shadow: 0 0 20px var(--green-glow);
+  }
+  .logo-text { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
+  .logo-text span { color: var(--green); }
+  .header-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    padding-left: 52px;
+  }
+
+  /* Cards */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 16px;
+    transition: border-color 0.2s;
+  }
+  .card:hover { border-color: #2a3d55; }
+  .card-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--muted);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* Form elements */
+  .field { margin-bottom: 14px; }
+  label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  input, select, textarea {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    padding: 10px 14px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px var(--green-dim);
+  }
+  input[type="password"] { letter-spacing: 2px; }
+  select { cursor: pointer; }
+  select option { background: var(--surface); }
+  textarea {
+    resize: vertical;
+    min-height: 320px;
+    line-height: 1.6;
+    font-size: 12px;
+  }
+
+  .hint {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 5px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .hint a { color: var(--green); text-decoration: none; }
+
+  /* Row layout */
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  /* Token row with save toggle */
+  .token-row { display: flex; gap: 10px; align-items: flex-end; }
+  .token-row input { flex: 1; }
+  .save-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--muted);
+    white-space: nowrap;
+    padding-bottom: 10px;
+    cursor: pointer;
+  }
+  .save-toggle input[type=checkbox] {
+    width: 14px; height: 14px;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  /* Buttons */
+  .btn-deploy {
+    width: 100%;
+    padding: 16px;
+    background: var(--green);
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 4px 20px var(--green-glow);
+    margin-top: 4px;
+  }
+  .btn-deploy:hover { transform: translateY(-1px); box-shadow: 0 6px 28px var(--green-glow); }
+  .btn-deploy:active { transform: translateY(0); }
+  .btn-deploy:disabled { background: #1f2d42; color: var(--muted); box-shadow: none; cursor: not-allowed; transform: none; }
+
+  .btn-load {
+    padding: 10px 16px;
+    background: var(--surface2);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 100%;
+    margin-top: 4px;
+  }
+  .btn-load:hover { border-color: var(--green); color: var(--green); }
+
+  /* Status */
+  .status {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    display: none;
+    margin-top: 12px;
+    line-height: 1.5;
+  }
+  .status.show { display: block; }
+  .status.success { background: var(--green-dim); border: 1px solid var(--green); color: var(--green); }
+  .status.error { background: rgba(255,77,109,0.1); border: 1px solid var(--red); color: var(--red); }
+  .status.loading { background: rgba(255,209,102,0.08); border: 1px solid var(--yellow); color: var(--yellow); }
+
+  /* Commit message */
+  .commit-row { display: flex; gap: 10px; align-items: flex-end; }
+  .commit-row input { flex: 1; }
+
+  /* File info badge */
+  .file-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--green-dim);
+    border: 1px solid rgba(0,217,126,0.3);
+    color: var(--green);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-top: 8px;
+    display: none;
+  }
+  .file-badge.show { display: inline-flex; }
+
+  /* Steps indicator */
+  .steps {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+  .step {
+    flex: 1;
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    transition: background 0.3s;
+  }
+  .step.done { background: var(--green); }
+  .step.active { background: var(--yellow); }
+
+  /* Spinner */
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .spinner {
+    width: 16px; height: 16px;
+    border: 2px solid rgba(0,0,0,0.3);
+    border-top-color: #000;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    display: none;
+  }
+  .btn-deploy.loading .spinner { display: block; }
+  .btn-deploy.loading .btn-label { display: none; }
+
+  /* Footer */
+  .footer-note {
+    text-align: center;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 24px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  @media(max-width:480px) { .row { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- PASSWORD GATE -->
+<div id="passGate" style="display:none;position:fixed;inset:0;background:var(--bg);z-index:999;align-items:center;justify-content:center;flex-direction:column;gap:20px;">
+  <div style="text-align:center;margin-bottom:8px;">
+    <div style="font-size:36px;margin-bottom:12px;">⚡</div>
+    <div style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;">Claude <span style="color:var(--green);">Deploy</span></div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:4px;">// enter access code</div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:10px;width:260px;">
+    <input type="password" id="passInput" placeholder="Access code"
+      style="text-align:center;font-size:22px;letter-spacing:8px;padding:14px;"
+      onkeydown="if(event.key==='Enter')checkPassword()">
+    <button onclick="checkPassword()"
+      style="padding:12px;background:var(--green);color:#000;border:none;border-radius:8px;font-family:'Syne',sans-serif;font-size:14px;font-weight:800;cursor:pointer;">
+      Unlock
+    </button>
+    <div id="passError" style="display:none;text-align:center;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--red);">
+      ✗ Incorrect code
+    </div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="appContent" style="display:none;">
+<div class="wrap">
+
+  <div class="header">
+    <div class="logo-row">
+      <div class="logo-icon">⚡</div>
+      <div class="logo-text">Claude <span>Deploy</span></div>
+    </div>
+    <div class="header-sub">// paste code from Claude → push to GitHub → Hostinger auto-deploys</div>
+  </div>
+
+  <div class="steps">
+    <div class="step done" id="step1"></div>
+    <div class="step" id="step2"></div>
+    <div class="step" id="step3"></div>
+  </div>
+
+  <!-- STEP 1: GitHub Config -->
+  <div class="card" id="configCard">
+    <div class="card-title">01 — GitHub Config</div>
+
+    <div class="field">
+      <label>Personal Access Token</label>
+      <div class="token-row">
+        <input type="password" id="pat" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" oninput="onPatInput()">
+      </div>
+      <div class="hint">
+        Get one at <a href="https://github.com/settings/tokens/new" target="_blank">github.com/settings/tokens</a> → select <strong>repo</strong> scope
+      </div>
+      <label style="display:flex;align-items:center;gap:6px;margin-top:8px;cursor:pointer;text-transform:none;letter-spacing:0;">
+        <input type="checkbox" id="savePat" style="width:14px;height:14px;padding:0;" onchange="toggleSavePat()">
+        <span style="font-size:12px;color:var(--muted);font-weight:400;">Remember token on this device</span>
+      </label>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label>GitHub Username</label>
+        <input type="text" id="owner" placeholder="Nicholasrooney" oninput="saveConfig()">
+      </div>
+      <div class="field">
+        <label>Repository Name</label>
+        <input type="text" id="repo" placeholder="towingireland" oninput="saveConfig()">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Branch</label>
+      <input type="text" id="branch" placeholder="main" value="main" oninput="saveConfig()">
+    </div>
+  </div>
+
+  <!-- STEP 2: File Selection -->
+  <div class="card">
+    <div class="card-title">02 — Select File</div>
+
+    <div class="field">
+      <label>File Path</label>
+      <input type="text" id="filepath" placeholder="e.g. index.html or privacy.html" oninput="onFilepathInput()">
+      <div class="hint">Type the filename exactly as it appears in your GitHub repo</div>
+    </div>
+
+    <button class="btn-load" onclick="loadFile()">📥 Load Current File Content</button>
+    <div class="file-badge" id="fileBadge">📄 <span id="fileBadgeText"></span></div>
+  </div>
+
+  <!-- STEP 3: Code + Deploy -->
+  <div class="card">
+    <div class="card-title">03 — Paste &amp; Deploy</div>
+
+    <div class="field">
+      <label>New Code (paste from Claude)</label>
+      <textarea id="code" placeholder="Paste the complete updated file content from Claude here..."></textarea>
+    </div>
+
+    <div class="field">
+      <label>Commit Message</label>
+      <input type="text" id="commitMsg" placeholder="Update via Claude Deploy Tool" value="Update via Claude Deploy Tool">
+    </div>
+
+    <button class="btn-deploy" id="deployBtn" onclick="deploy()">
+      <div class="spinner"></div>
+      <span class="btn-label">🚀 Deploy to GitHub</span>
+    </button>
+
+    <div class="status" id="status"></div>
+  </div>
+
+  <div class="footer-note">
+    // Changes pushed here → Hostinger auto-deploys in ~10 seconds
+  </div>
+
+</div>
+</div><!-- end appContent -->
+
+<script>
+  // ── STORAGE ──────────────────────────────────────────────
+  const KEYS = { owner:'cdt_owner', repo:'cdt_repo', branch:'cdt_branch', savePat:'cdt_savepat', pat:'cdt_pat' };
+
+  function loadSaved() {
+    const owner  = localStorage.getItem(KEYS.owner)  || '';
+    const repo   = localStorage.getItem(KEYS.repo)   || '';
+    const branch = localStorage.getItem(KEYS.branch) || 'main';
+    const save   = localStorage.getItem(KEYS.savePat) === '1';
+    const pat    = save ? (localStorage.getItem(KEYS.pat) || '') : '';
+
+    if (owner)  document.getElementById('owner').value  = owner;
+    if (repo)   document.getElementById('repo').value   = repo;
+    if (branch) document.getElementById('branch').value = branch;
+    document.getElementById('savePat').checked = save;
+    if (pat)    document.getElementById('pat').value    = pat;
+  }
+
+  function saveConfig() {
+    localStorage.setItem(KEYS.owner,  document.getElementById('owner').value.trim());
+    localStorage.setItem(KEYS.repo,   document.getElementById('repo').value.trim());
+    localStorage.setItem(KEYS.branch, document.getElementById('branch').value.trim() || 'main');
+  }
+
+  function onPatInput() {
+    if (document.getElementById('savePat').checked) {
+      localStorage.setItem(KEYS.pat, document.getElementById('pat').value.trim());
+    }
+    updateSteps();
+  }
+
+  function toggleSavePat() {
+    const save = document.getElementById('savePat').checked;
+    localStorage.setItem(KEYS.savePat, save ? '1' : '0');
+    if (save) {
+      localStorage.setItem(KEYS.pat, document.getElementById('pat').value.trim());
+    } else {
+      localStorage.removeItem(KEYS.pat);
+    }
+  }
+
+  function onFilepathInput() { updateSteps(); }
+
+  function updateSteps() {
+    const hasPat  = !!document.getElementById('pat').value.trim();
+    const hasFile = !!document.getElementById('filepath').value.trim();
+    document.getElementById('step1').className = 'step ' + (hasPat ? 'done' : 'active');
+    document.getElementById('step2').className = 'step ' + (hasPat && hasFile ? 'done' : hasPat ? 'active' : '');
+    document.getElementById('step3').className = 'step ' + (hasPat && hasFile ? 'active' : '');
+  }
+
+  // ── GITHUB API ────────────────────────────────────────────
+  function getConfig() {
+    return {
+      pat:    document.getElementById('pat').value.trim(),
+      owner:  document.getElementById('owner').value.trim(),
+      repo:   document.getElementById('repo').value.trim(),
+      branch: document.getElementById('branch').value.trim() || 'main',
+    };
+  }
+
+  function apiUrl(path) {
+    const { owner, repo } = getConfig();
+    return `https://api.github.com/repos/${owner}/${repo}/${path}`;
+  }
+
+  function apiHeaders() {
+    return {
+      'Authorization': `token ${getConfig().pat}`,
+      'Accept': 'application/vnd.github.v3+json',
+      'Content-Type': 'application/json',
+    };
+  }
+
+  // Load current file from GitHub
+  async function loadFile() {
+    const { pat, owner, repo, branch } = getConfig();
+    const filepath = document.getElementById('filepath').value.trim();
+
+    if (!pat || !owner || !repo || !filepath) {
+      showStatus('Please fill in token, username, repo and filename first.', 'error');
+      return;
+    }
+
+    showStatus('Loading file from GitHub...', 'loading');
+
+    try {
+      const res = await fetch(apiUrl(`contents/${filepath}?ref=${branch}`), {
+        headers: apiHeaders()
+      });
+
+      if (!res.ok) {
+        const err = await res.json();
+        showStatus(`Could not load file: ${err.message}`, 'error');
+        return;
+      }
+
+      const data = await res.json();
+      const content = atob(data.content.replace(/\n/g, ''));
+      document.getElementById('code').value = content;
+
+      // Store SHA for update
+      window._fileSha = data.sha;
+
+      const badge = document.getElementById('fileBadge');
+      document.getElementById('fileBadgeText').textContent = `${filepath} loaded (${Math.round(content.length/1024 * 10)/10} KB)`;
+      badge.classList.add('show');
+
+      showStatus(`✓ File loaded. Edit the code below and click Deploy.`, 'success');
+      saveConfig();
+      updateSteps();
+
+    } catch(e) {
+      showStatus(`Error: ${e.message}`, 'error');
+    }
+  }
+
+  // Deploy to GitHub
+  async function deploy() {
+    const { pat, owner, repo, branch } = getConfig();
+    const filepath  = document.getElementById('filepath').value.trim();
+    const code      = document.getElementById('code').value;
+    const commitMsg = document.getElementById('commitMsg').value.trim() || 'Update via Claude Deploy Tool';
+
+    if (!pat)      return showStatus('Please enter your GitHub Personal Access Token.', 'error');
+    if (!owner)    return showStatus('Please enter your GitHub username.', 'error');
+    if (!repo)     return showStatus('Please enter your repository name.', 'error');
+    if (!filepath) return showStatus('Please enter the file path.', 'error');
+    if (!code)     return showStatus('Please paste the code to deploy.', 'error');
+
+    setLoading(true);
+    showStatus('Pushing to GitHub...', 'loading');
+
+    try {
+      // If we don't have SHA yet, fetch it
+      if (!window._fileSha) {
+        const res = await fetch(apiUrl(`contents/${filepath}?ref=${branch}`), {
+          headers: apiHeaders()
+        });
+        if (res.ok) {
+          const data = await res.json();
+          window._fileSha = data.sha;
+        }
+        // If 404, it's a new file — that's fine, no SHA needed
+      }
+
+      const body = {
+        message: commitMsg,
+        content: btoa(unescape(encodeURIComponent(code))),
+        branch:  branch,
+      };
+      if (window._fileSha) body.sha = window._fileSha;
+
+      const res = await fetch(apiUrl(`contents/${filepath}`), {
+        method:  'PUT',
+        headers: apiHeaders(),
+        body:    JSON.stringify(body),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        showStatus(`GitHub error: ${data.message}`, 'error');
+        setLoading(false);
+        return;
+      }
+
+      // Update SHA for next deploy
+      window._fileSha = data.content?.sha || null;
+
+      showStatus(
+        `✅ Deployed successfully!\n\n` +
+        `File: ${filepath}\n` +
+        `Commit: ${data.commit?.sha?.substring(0,7) || 'done'}\n` +
+        `→ Hostinger will auto-deploy in ~10 seconds`,
+        'success'
+      );
+
+      saveConfig();
+      document.getElementById('fileBadgeText').textContent = `${filepath} — last deployed just now`;
+
+    } catch(e) {
+      showStatus(`Error: ${e.message}`, 'error');
+    }
+
+    setLoading(false);
+  }
+
+  // ── UI HELPERS ────────────────────────────────────────────
+  function showStatus(msg, type) {
+    const el = document.getElementById('status');
+    el.textContent = msg;
+    el.className = `status show ${type}`;
+  }
+
+  function setLoading(on) {
+    const btn = document.getElementById('deployBtn');
+    btn.classList.toggle('loading', on);
+    btn.disabled = on;
+  }
+
+  // ── PASSWORD GATE ─────────────────────────────────────────
+  const PASS = '1919';
+
+  function checkPassword() {
+    const entered = document.getElementById('passInput').value;
+    if (entered === PASS) {
+      localStorage.setItem('cdt_auth', '1');
+      document.getElementById('passGate').style.display = 'none';
+      document.getElementById('appContent').style.display = 'block';
+      loadSaved();
+      updateSteps();
+    } else {
+      document.getElementById('passError').style.display = 'block';
+      document.getElementById('passInput').value = '';
+      document.getElementById('passInput').focus();
+      setTimeout(() => document.getElementById('passError').style.display = 'none', 2000);
+    }
+  }
+
+  // ── BOOT ──────────────────────────────────────────────────
+  if (localStorage.getItem('cdt_auth') === '1') {
+    document.getElementById('passGate').style.display = 'none';
+    document.getElementById('appContent').style.display = 'block';
+    loadSaved();
+    updateSteps();
+  } else {
+    document.getElementById('passGate').style.display = 'flex';
+    document.getElementById('appContent').style.display = 'none';
+    setTimeout(() => document.getElementById('passInput').focus(), 100);
+  }
+</script>
+</body>
+</html>
