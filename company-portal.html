@@ -11,7 +11,7 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tow Company Portal — TowingIreland.ie</title>
+<title>Recovery Partner Portal — TowingIreland.ie</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -144,7 +144,7 @@ footer a{color:rgba(255,255,255,0.5);text-decoration:none;margin:0 10px;}
 <nav>
   <a href="index.html" class="logo">Towing<span>Ireland</span>.ie</a>
   <div class="nav-right">
-    <span class="portal-badge">&#128665; Company Portal</span>
+    <span class="portal-badge">&#128667; Partner Portal</span>
     <a href="index.html" class="nav-back">&#8592; Customer site</a>
   </div>
 </nav>
@@ -155,7 +155,7 @@ footer a{color:rgba(255,255,255,0.5);text-decoration:none;margin:0 10px;}
     <div class="landing">
       <div class="landing-icon">&#128665;</div>
       <h1>Join TowingIreland.ie</h1>
-      <p>Register your recovery business to receive live tow job requests from customers in your chosen counties &mdash; straight to your email inbox.</p>
+      <p>Register your heavy recovery business to receive HGV, bus and plant recovery jobs (3,500kg&#8211;44,000kg) in your chosen counties &mdash; straight to your email inbox.</p>
       <button class="google-btn" id="signInBtn" onclick="doCompanySignIn()">
         <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg">
         Sign in with Google to get started
@@ -239,7 +239,7 @@ footer a{color:rgba(255,255,255,0.5);text-decoration:none;margin:0 10px;}
       </div>
       <div class="section">
         <div class="section-title">Operating Counties</div>
-        <div class="section-sub">Select all counties where you respond to tow requests.</div>
+        <div class="section-sub">Select all counties where you respond to heavy recovery requests.</div>
         <button class="select-all-btn" onclick="toggleAllCounties()">Select / Deselect All</button>
         <div class="county-grid" id="countyGrid"></div>
       </div>
@@ -279,7 +279,7 @@ footer a{color:rgba(255,255,255,0.5);text-decoration:none;margin:0 10px;}
         <div class="toggle-row">
           <div class="toggle-info">
             <h4>Pause Job Notifications</h4>
-            <p>When paused, your company will not receive new tow job requests. Existing chats are not affected.</p>
+            <p>When paused, your company will not receive new recovery job requests. Existing chats are not affected.</p>
           </div>
           <label class="toggle">
             <input type="checkbox" id="pauseToggle" onchange="togglePause()">
@@ -411,7 +411,7 @@ function renderStatusTab(){
 
   const s=companyProfile.status||'pending';
   const cfg={
-    approved:{cls:'approved',title:'&#9989; You are live!',desc:'Your application has been approved. Your company is now active and receiving tow job requests in your selected counties.'},
+    approved:{cls:'approved',title:'&#9989; You are live!',desc:'Your application has been approved. Your company is now active and receiving heavy recovery job requests in your selected counties.'},
     pending:{cls:'pending',title:'&#9203; Application under review',desc:'Your registration has been received and is being reviewed by the TowingIreland.ie team. You will receive an email once a decision has been made — usually within 24 hours.'},
     needs_more_info:{cls:'needs_more_info',title:'&#9888; More information required',desc:'We need some additional details before we can approve your application. Please see the message below, update your profile, and re-save.'},
     rejected:{cls:'rejected',title:'Application not approved',desc:'Your application could not be approved at this time. Please contact comparemytow@gmail.com if you believe this is an error or would like to provide more information.'},
